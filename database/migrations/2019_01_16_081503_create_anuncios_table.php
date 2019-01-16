@@ -25,6 +25,7 @@ class CreateAnunciosTable extends Migration
             $table->string('descripcion', 1000);
             $table->unsignedInteger('id_vendedor');
             $table->foreign('id_vendedor')->references('id')->on('users');
+            $table->boolean('vendido')->default(false);
             $table->timestamps();
         });
     }

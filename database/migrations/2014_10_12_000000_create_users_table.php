@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('user');//admin|user
             $table->string('localidad');
             $table->float('saldo')->default(25);
+            $table->boolean('actived')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
