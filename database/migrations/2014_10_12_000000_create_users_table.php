@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('localidad');
             $table->float('saldo')->default(25);
             $table->boolean('actived')->default(false);
+            $table->string('codigo_confirmacion')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
