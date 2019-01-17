@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'localidad' =>['required', 'string'],
         ]);
     }
 
@@ -68,6 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'localidad' =>$data['localidad'],
             'codigo_confirmacion' => $data['codigo_confirmacion'],
         ]);
         Mail::send('emails.codigo_confirmacion', $data, function($message) use ($data){
