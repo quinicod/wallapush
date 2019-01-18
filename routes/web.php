@@ -25,3 +25,10 @@ Route::group(['middleware' =>['verified']], function(){
     //usuario-vendedor crud Anuncio
     Route::resource('vendedor', 'AnuncioController');
 });
+
+Route::get('/admin', function () {
+    return 'Hola usuario administrador.';
+});
+Route::group(['middleware' => ['admin']], function () {
+    //  
+});
