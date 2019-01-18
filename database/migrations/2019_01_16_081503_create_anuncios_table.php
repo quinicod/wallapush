@@ -20,6 +20,7 @@ class CreateAnunciosTable extends Migration
             $table->unsignedInteger('id_categoria');
             $table->foreign('id_categoria')->references('id')->on('categorias');
             $table->float('precio');
+            $table->string('estado');
             $table->boolean('nuevo');
             $table->string('img');
             $table->string('descripcion', 1000);
