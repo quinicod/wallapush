@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Anuncio;
 use App\Categoria;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AnuncioRequest;
+use App\Image;
+use \Illuminate\Support\Facades\Storage;
 
 class AnuncioController extends Controller
 {
@@ -35,9 +39,34 @@ class AnuncioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnuncioRequest $req)
     {
-        //
+        $user = Auth::user();
+        $anuncio = Anuncio::create([
+            'producto' => $req->producto,
+            'id_categoria' => $req->id_categoria,
+            'precio' => $req->precio,
+            'nuevo' => $req->nuevo,
+            'descripcion' => $req->descripcion,
+            'id_vendedor' => $user->id,
+        ]);
+
+        foreach($req->img as $i){
+            $file = $i;
+            $nombre = $file->getClientOriginalName();
+            \Storage::disk('anuncios')->put($nombre,  \File::get($file));
+
+            Image::create([
+                'id_anuncio' => $anuncio->id,
+                'img' => $i,
+                ]);
+        }
+        
+        if($anuncio)
+            //redirigir al anuncio en concreto una vez este creada esa vista
+            return back()->with('message', ['success', __("Anuncio creado correctamente")]);
+        else
+            return back()->with('message', ['danger', __("Error al crear el anuncio")]);
     }
 
     /**

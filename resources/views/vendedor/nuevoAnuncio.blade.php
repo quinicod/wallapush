@@ -2,13 +2,16 @@
 
 @section('content')
 <div class="container">
+        @if(session('message'))
+            <div class="alert alert-{{ session('message')[0] }}"> {{ session('message')[1] }} </div> 
+        @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Nuevo Anuncio</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('vendedor.store') }}">
+                    <form method="POST" action="{{ route('vendedor.store') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id_vendedor" value="{{  Auth::user()->id }}">
                         <div class="form-group row">
@@ -32,7 +35,7 @@
                                 <select class="form-control{{ $errors->has('id_categoria') ? ' is-invalid' : '' }}" id="exampleFormControlSelect1" name="id_categoria">
                                     <option selected>...</option>
                                     @foreach($categorias as $c)
-                                        <option>{{ $c->nombre }}</option>
+                                        <option value="{{ $c->id }}">{{ $c->nombre }}</option>
                                     @endforeach
                                 </select>
 
@@ -62,10 +65,10 @@
                                 <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Estado</label>
     
                                 <div class="col-md-6">
-                                    <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" id="exampleFormControlSelect1" name="estado">
+                                    <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" id="exampleFormControlSelect1" name="nuevo">
                                         <option selected>...</option>
-                                        <option>Nuevo</option>
-                                        <option>Segunda mano</option>
+                                        <option value="1">Nuevo</option>
+                                        <option value="0">Segunda mano</option>
                                     </select>
     
                                     @if ($errors->has('estado'))
@@ -76,24 +79,26 @@
                                 </div>
                             </div>
 
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1" class="col-md-4 col-form-label text-md-right">Imagenes</label>
-                            
-                            <div class="col-md-6">
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="img" required>
-                                @if ($errors->has('img'))
+                        <div class="input-group offset-md-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroupFileAddon01">Imagenes</span>
+                            </div>
+                            <div class="custom-file col-md-6">
+                              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="img[]" multiple>
+                              <label class="custom-file-label" for="inputGroupFile01">Seleccion...</label>
+                              @if ($errors->has('img'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('img') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                          </div> <br><br>
 
                         <div class="form-group row">
                                 <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="descripcion" type="descripcion" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" required>
+                                    <textarea class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" id="descripcion" rows="3" name="descripcion" required></textarea>
     
                                     @if ($errors->has('descripcion'))
                                         <span class="invalid-feedback" role="alert">
