@@ -55,6 +55,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->isAdmin())
+                                        <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> Administrar usuarios</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir anuncio</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth; 
+
 
 class CheckAdmin
 {
@@ -14,14 +16,14 @@ class CheckAdmin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {/*
-        if ($request->user()->role == 'admin') {
-            return $next($request);
-           #return redirect('admin');
-
+    {
+        if (Auth::check()){
+            #   dd(Auth::check());
+            if (Auth::user()->isAdmin()){
+                return $next($request);
+            }
         }
         return redirect('home');
-        */
-
     }
+    
 }

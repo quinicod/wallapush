@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Middleware;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +25,9 @@ Route::group(['middleware' =>['verified']], function(){
 
     //usuario-vendedor crud Anuncio
     Route::resource('vendedor', 'AnuncioController');
-});
-
-Route::get('/admin', function () {
-    return 'Hola usuario administrador.';
-});
-Route::group(['middleware' => ['admin']], function () {
-    //  
+    
+    #   Administrador: Editar usuario
+    Route::group(['middleware' => ['admin']], function () {
+        Route::resource('users', 'UserController');
+    });
 });
