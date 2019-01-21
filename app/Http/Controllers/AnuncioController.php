@@ -17,9 +17,22 @@ class AnuncioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        #   Filtrar búsquedas
+            $producto  = $request->get('producto');
+            $descripcion = $request->get('descripcion');
+            $id_categoria   = $request->get('id_categoria');
+            $id_vendedor   = $request->get('id_vendedor');
+
+            $anuncios = Anuncio::orderBy('id', 'DESC')
+                ->Producto($producto)
+                ->Descripcion($descripcion)
+                ->IDCategoria($id_categoria)
+                ->IDVendedor($id_vendedor)
+                ->paginate(4);
+
+            return view('comprador.index', compact('anuncios'));
     }
 
     /**

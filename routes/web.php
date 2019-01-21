@@ -29,3 +29,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
     Route::group(['middleware' => ['admin']], function () {
         Route::resource('users', 'UserController');
     });
+
+    #   Compradores: Filtrar búsquedas de productos
+    Route::resource('comprador', 'AnuncioController');

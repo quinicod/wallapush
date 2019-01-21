@@ -46,5 +46,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
             'role' => 'admin',
         ]);
+
+        factory(\App\Anuncio::class, 50)->create();
     }
 }
