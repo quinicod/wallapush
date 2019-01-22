@@ -22,16 +22,13 @@ class AnuncioController extends Controller
         #   Filtrar búsquedas
             $producto  = $request->get('producto');
             $descripcion = $request->get('descripcion');
-            $id_categoria   = $request->get('id_categoria');
-            $id_vendedor   = $request->get('id_vendedor');
+            $opcion_categoria   = $request->get('id_categoria');
 
             $anuncios = Anuncio::orderBy('id', 'DESC')
                 ->Producto($producto)
                 ->Descripcion($descripcion)
-                ->IDCategoria($id_categoria)
-                ->IDVendedor($id_vendedor)
+                ->Categoria($opcion_categoria)
                 ->paginate(4);
-
             return view('comprador.index', compact('anuncios'));
     }
 

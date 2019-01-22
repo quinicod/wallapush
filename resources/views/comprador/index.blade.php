@@ -23,10 +23,7 @@
                 {{ Form::text('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Descripción']) }}
             </div>
             <div class="form-group">
-                {{ Form::text('id_categoria', null, ['class' => 'form-control', 'placeholder' => 'Categoria']) }}
-            </div>
-            <div class="form-group">
-                {{ Form::text('id_vendedor', null, ['class' => 'form-control', 'placeholder' => 'Vendedor']) }}
+                {{ Form::select('id_categoria', config('filtrocategorias.opciones_categorias'), null, ['class' => 'form-control', 'placeholder' => 'Seleccione una categoría']) }}
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-default">
@@ -89,7 +86,7 @@
     </tbody>
   </table>
   @if($anuncios->count())
-    {{ $anuncios->links() }}
+    {!! $anuncios->appends(Request::only(['producto', 'descripcion' , 'id_categoria']))->render() !!}
   @endif
 <div>
 @endsection

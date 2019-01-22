@@ -32,15 +32,13 @@ class Anuncio extends Model
                 return $query->where('descripcion', 'LIKE', "%$descripcion%");
         }
 
-        public function scopeIDCategoria($query, $id_categoria)
+        public function scopeCategoria($query, $opcion_categoria)
         {
-            if($id_categoria)
-                return $query->where('id_categoria', 'LIKE', "%$id_categoria%");
-        }
+            $opciones_categorias = config('filtrocategorias.opciones_categorias');
 
-        public function scopeIDVendedor($query, $id_vendedor)
-        {
-            if($id_vendedor)
-                return $query->where('id_vendedor', 'LIKE', "%$id_vendedor%");
+            if($opciones_categorias != "" && isset($opciones_categorias[$opcion_categoria])) 
+            {
+                $query->where('id_categoria', 'LIKE', $opcion_categoria);
+            }
         }
 }
