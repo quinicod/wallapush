@@ -1,0 +1,11 @@
+.carousel-inner > .carousel-item > img {
+    object-fit: scale-down;
+    height: 25vh;
+    width: 100%;
+  }
+  .carousel-indicators{
+    padding-bottom: 50%;
+  }
+.imgBorrado{
+    max-width: 80%;
+}

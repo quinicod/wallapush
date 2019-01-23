@@ -22,13 +22,14 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');;
 
-    //usuario-vendedor crud Anuncio
-    Route::resource('vendedor', 'AnuncioController');
+//usuario-vendedor crud Anuncio
+Route::get('vendedor/Mis-Anuncios', 'AnuncioController@misAnuncios')->name('misAnuncios');
+Route::resource('vendedor', 'AnuncioController');
     
-    #   Administrador: Editar usuario
-    Route::group(['middleware' => ['admin']], function () {
-        Route::resource('users', 'UserController');
-    });
+#   Administrador: Editar usuario
+Route::group(['middleware' => ['admin']], function () {
+    Route::resource('users', 'UserController');
+});
 
-    #   Compradores: Filtrar búsquedas de productos
-    Route::resource('comprador', 'AnuncioController');
+#   Compradores: Filtrar búsquedas de productos
+Route::resource('comprador', 'AnuncioController');

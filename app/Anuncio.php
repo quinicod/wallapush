@@ -17,6 +17,10 @@ class Anuncio extends Model
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
+    public function imagenes(){
+        return $this->hasMany(Image::class, 'id_anuncio');
+    }
+
     #  Filtrar productos 
     #   <Query Scope>
 

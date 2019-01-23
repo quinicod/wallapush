@@ -77,22 +77,19 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
+                            </div> <br><br>
 
-                        <div class="input-group offset-md-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroupFileAddon01">Imagenes</span>
-                            </div>
-                            <div class="custom-file col-md-6">
-                              <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="img[]" multiple>
-                              <label class="custom-file-label" for="inputGroupFile01">Seleccion...</label>
-                              @if ($errors->has('img'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('img') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                          </div> <br><br>
+                            <div class="form-group row offset-md-2">
+                                <label for="exampleFormControlFile1">Imagenes</label>
+                                <div class="col-md-6">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*" name="img[]" multiple>
+                                    @if ($errors->has('img'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('img') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div> <br><br>
 
                         <div class="form-group row">
                                 <label for="descripcion" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
@@ -111,7 +108,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Enviar') }}
                                 </button>
                             </div>
                         </div>
