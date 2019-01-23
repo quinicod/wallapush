@@ -34,7 +34,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>
+                            <a class="navbar-brand" href="{{ route('comprador.index') }}">
+                                Buscar productos
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -56,6 +60,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->isAdmin())
+                                        <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> Administrar usuarios</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir anuncio</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

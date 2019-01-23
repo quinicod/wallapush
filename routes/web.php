@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Middleware;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,13 +22,13 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');;
 
-//usuario-vendedor crud Anuncio
-Route::resource('vendedor', 'AnuncioController');
+    //usuario-vendedor crud Anuncio
+    Route::resource('vendedor', 'AnuncioController');
+    
+    #   Administrador: Editar usuario
+    Route::group(['middleware' => ['admin']], function () {
+        Route::resource('users', 'UserController');
+    });
 
-
-Route::get('/admin', function () {
-    return 'Hola usuario administrador.';
-});
-Route::group(['middleware' => ['admin']], function () {
-    //  
-});
+    #   Compradores: Filtrar búsquedas de productos
+    Route::resource('comprador', 'AnuncioController');

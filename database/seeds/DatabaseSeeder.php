@@ -39,5 +39,14 @@ class DatabaseSeeder extends Seeder
             'localidad' => 'San fernando',
             'password' => bcrypt('123456'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'localidad' => 'Cadiz',
+            'password' => bcrypt('123456'),
+            'role' => 'admin',
+        ]);
+
+        factory(\App\Anuncio::class, 50)->create();
     }
 }
