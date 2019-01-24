@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AnuncioRequest;
 use App\Image;
 use \Illuminate\Support\Facades\Storage;
+use App\User;
 
 class AnuncioController extends Controller
 {
@@ -86,11 +87,14 @@ class AnuncioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $transaccion=Anuncio::find($id);
-        #   dd($transaccion);
-
-        return view('comprador.detail', compact('transaccion'));
+    {   
+        #   Mostrar anuncio con sus atributos (producto, vendedor, imagen, descripción...)
+            $anuncio=Anuncio::find($id);
+            
+            $anuncios = Anuncio::orderBy('created_at', 'asc')->select('id')->where('id', $id)->with('imagenes')->get()->toArray();
+            $anuncios=Array_chunk($anuncios,3,true); 
+            
+            return view('transaccion.index', compact('anuncio', 'anuncios'));
     }
 
     /**
