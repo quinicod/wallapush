@@ -22,29 +22,33 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'Electrodomésticos',
         ]);
         DB::table('users')->insert([
-            'name' => 'Quino',
-            'email' => 'joaquinguzmangarciaplata@gmail.com',
+            'name'      => 'Quino',
+            'email'     => 'joaquinguzmangarciaplata@gmail.com',
             'localidad' => 'Sanlucar de barrameda',
-            'password' => bcrypt('123456'),
+            'password'  => bcrypt('123456'),
+            'actived'   => 1
         ]);
         DB::table('users')->insert([
-            'name' => 'Cristian',
-            'email' => 'crisguerredina@gmail.com',
+            'name'      => 'Cristian',
+            'email'     => 'crisguerredina@gmail.com',
             'localidad' => 'Cadiz',
-            'password' => bcrypt('123456'),
+            'password'  => bcrypt('123456'),
+            'actived'   => 1
         ]);
         DB::table('users')->insert([
-            'name' => 'Robe',
-            'email' => 'roberto.leon.armario@gmail.com',
+            'name'      => 'Robe',
+            'email'     => 'roberto.leon.armario@gmail.com',
             'localidad' => 'San fernando',
-            'password' => bcrypt('123456'),
+            'password'  => bcrypt('123456'),
+            'actived'   => 1
         ]);
         DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
+            'name'      => 'Admin',
+            'email'     => 'admin@admin.com',
             'localidad' => 'Cadiz',
-            'password' => bcrypt('123456'),
-            'role' => 'admin',
+            'password'  => bcrypt('123456'),
+            'role'      => 'admin',
+            'actived'   => 1
         ]);
 
         DB::table('users')->insert([
@@ -52,6 +56,7 @@ class DatabaseSeeder extends Seeder
             'email'     => 'prueba@prueba.com',
             'localidad' => 'Cadiz',
             'password'  => bcrypt('123456'),
+            'actived'   => 1
         ]);
 
         factory(\App\Anuncio::class, 100)->create();
