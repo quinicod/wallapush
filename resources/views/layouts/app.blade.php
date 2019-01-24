@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
@@ -63,7 +64,8 @@
                                     @if(Auth::user()->isAdmin())
                                         <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> Administrar usuarios</a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir anuncio</a>
+                                    <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir Anuncio</a>
+                                    <a class="dropdown-item" href="{{ route('misAnuncios') }}"> Mis Anuncios</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

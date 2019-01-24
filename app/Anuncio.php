@@ -17,8 +17,8 @@ class Anuncio extends Model
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
-    public function isOwner() {
-        return $this->owner->id === auth()->id();
+    public function imagenes(){
+        return $this->hasMany(Image::class, 'id_anuncio');
     }
 
     #  Filtrar productos 
