@@ -29,7 +29,7 @@ class AnuncioController extends Controller
                 ->Descripcion($descripcion)
                 ->Categoria($opcion_categoria)
                 ->paginate(4);
-            return view('comprador.index', compact('anuncios'));
+            return view('comprador/index', compact('anuncios'));
     }
 
     /**
@@ -68,7 +68,7 @@ class AnuncioController extends Controller
 
             Image::create([
                 'id_anuncio' => $anuncio->id,
-                'img' => $i,
+                'img' => $nombre,
                 ]);
         }
         
@@ -122,5 +122,16 @@ class AnuncioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function misAnuncios()
+    {
+        $usuario = Auth::id();
+        $anuncios = Anuncio::orderBy('created_at', 'asc')->where('id_vendedor',$usuario)->with('imagenes')->get()->toArray();
+        $anuncios=Array_chunk($anuncios,3,true);
+        $categorias=Categoria::all();
+        $imgBorrado = array();
+        //dd($imgBorrado);
+        return view('vendedor/misAnuncios', compact('anuncios','categorias','imgBorrado'));
     }
 }

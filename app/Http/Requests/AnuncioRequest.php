@@ -24,11 +24,11 @@ class AnuncioRequest extends FormRequest
     public function rules()
     {
         return [
-            'producto' => 'required|min:10',
+            'producto' => 'required|min:5',
             'id_categoria' => 'required|exists:categorias,id',
             'precio' => 'required|min:1',
             'nuevo' => 'required',
-            'descripcion' => 'required|min:10',
+            'descripcion' => 'required|min:10|max:500',
             'id_vendedor' => 'required|exists:users,id',
         ];
     }
