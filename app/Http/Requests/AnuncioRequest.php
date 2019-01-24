@@ -29,7 +29,10 @@ class AnuncioRequest extends FormRequest
             'precio' => 'required|min:1',
             'nuevo' => 'required',
             'descripcion' => 'required|min:10|max:500',
-            'id_vendedor' => 'required|exists:users,id',
         ];
+        $nbr = count($this->input('img')) - 1;
+        foreach(range(0, $nbr) as $index) {
+            $rules['image.' . $index] = 'image|max:4000';
+        }
     }
 }

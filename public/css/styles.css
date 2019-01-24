@@ -3,9 +3,29 @@
     height: 25vh;
     width: 100%;
   }
-  .carousel-indicators{
-    padding-bottom: 50%;
-  }
+.carousel{
+  height: 70%;
+}
+ol.carousel-indicators{
+    margin-bottom: 40%;
+}
 .imgBorrado{
     max-width: 80%;
+}
+.enlace {
+  display:inline;
+  border:0;
+  padding:0;
+  margin:0;
+  background:none;
+  color:#2883ce;
+  font-family: arial, sans-serif;
+  font-size: 1em;
+  line-height:1em;
+}
+
+.enlace:hover {
+  text-decoration:underline;
+  color:#4771be;
+  cursor:pointer;
 }

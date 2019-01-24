@@ -73,8 +73,8 @@ class AnuncioController extends Controller
         }
         
         if($anuncio)
-            //redirigir al anuncio en concreto una vez este creada esa vista
-            return back()->with('message', ['success', __("Anuncio creado correctamente")]);
+            //redirigir al anuncio en concreto una vez este creada esa vista *
+            return redirect()->route('misAnuncios')->with('message', ['success', __("Anuncio creado correctamente")]);
         else
             return back()->with('message', ['danger', __("Error al crear el anuncio")]);
     }
@@ -113,7 +113,44 @@ class AnuncioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $anuncio = Anuncio::find($id);
+        //actualizando anuncio
+        $anuncio->update([
+            'producto' => $request->producto,
+            'id_categoria' => $request->id_categoria,
+            'precio' => $request->precio,
+            'nuevo' => $request->nuevo,
+            'descripcion' => $request->descripcion,
+        ]);
+        $anuncio->save();
+
+        //borrando posibles imagenes
+        if($request->imgBorrado != null){
+            $imgBorrado = explode(',',$request->imgBorrado); 
+            foreach($imgBorrado as $i){
+                $valor = intval($i);
+                $imagen = Image::find($valor);
+                Storage::disk('anuncios')->delete($imagen->img);
+                $imagen->delete();
+            }
+        }
+
+        //añadiendo posibles imagenes
+        if(isset($request->img)){
+            foreach($request->img as $img){
+                $file = $img;
+                $nombre = $file->getClientOriginalName();
+                Storage::disk('anuncios')->put($nombre,  \File::get($file));
+
+                Image::create([
+                    'id_anuncio' => $anuncio->id,
+                    'img' => $nombre,
+                ]);
+            }
+        }
+
+        return back()->with('message', ['success', __("Anuncio actualizado correctamente")]);
+    
     }
 
     /**
@@ -124,7 +161,13 @@ class AnuncioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $anuncio = Anuncio::find($id);
+        $anuncio->delete();
+        //Borrado con funcion boot en el modelo. En el que se borran las imagenes que tiene el anuncio.
+        if($anuncio)
+            return back()->with('message', ['success', __("Anuncio borrado correctamente")]);
+        else
+            return back()->with('message', ['danger', __("Error al borrar el anuncio")]);
     }
 
     public function misAnuncios()
@@ -134,7 +177,8 @@ class AnuncioController extends Controller
         $anuncios=Array_chunk($anuncios,3,true);
         $categorias=Categoria::all();
         $imgBorrado = array();
+        $imgB=null;
         //dd($imgBorrado);
-        return view('vendedor/misAnuncios', compact('anuncios','categorias','imgBorrado'));
+        return view('vendedor/misAnuncios', compact('anuncios','categorias','imgBorrado','imgB'));
     }
 }
