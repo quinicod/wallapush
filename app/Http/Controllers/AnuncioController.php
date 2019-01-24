@@ -87,7 +87,10 @@ class AnuncioController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaccion=Anuncio::find($id);
+        #   dd($transaccion);
+
+        return view('comprador.detail', compact('transaccion'));
     }
 
     /**

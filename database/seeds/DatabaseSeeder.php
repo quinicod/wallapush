@@ -47,6 +47,13 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        factory(\App\Anuncio::class, 50)->create();
+        DB::table('users')->insert([
+            'name'      => 'Prueba',
+            'email'     => 'prueba@prueba.com',
+            'localidad' => 'Cadiz',
+            'password'  => bcrypt('123456'),
+        ]);
+
+        factory(\App\Anuncio::class, 100)->create();
     }
 }
