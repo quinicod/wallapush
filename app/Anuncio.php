@@ -17,6 +17,10 @@ class Anuncio extends Model
         return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
+    public function isOwner() {
+        return $this->owner->id === auth()->id();
+    }
+
     #  Filtrar productos 
     #   <Query Scope>
 

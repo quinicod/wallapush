@@ -32,3 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
     #   Compradores: Filtrar búsquedas de productos
     Route::resource('comprador', 'AnuncioController');
+
+    #   Transacciones
+    #   Route::get('transaccion', 'AnuncioController@show');
+    Route::resource('transaccion', 'TransaccionController');

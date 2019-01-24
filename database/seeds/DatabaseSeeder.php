@@ -47,6 +47,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        factory(\App\Anuncio::class, 50)->create();
+        factory(\App\Anuncio::class, 100)->create();
     }
 }
