@@ -13,7 +13,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('vendedor.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id_vendedor" value="{{  Auth::user()->id }}">
                         <div class="form-group row">
                             <label for="producto" class="col-md-4 col-form-label text-md-right">{{ __('Producto') }}</label>
 
@@ -82,7 +81,7 @@
                             <div class="form-group row offset-md-2">
                                 <label for="exampleFormControlFile1">Imagenes</label>
                                 <div class="col-md-6">
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*" name="img[]" multiple>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*" name="img[]" multiple required>
                                     @if ($errors->has('img'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('img') }}</strong>

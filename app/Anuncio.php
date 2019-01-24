@@ -3,12 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 
 class Anuncio extends Model
 {
     protected $fillable = [
         'producto', 'id_categoria', 'precio', 'nuevo', 'descripcion', 'id_vendedor', 'vendido'];
 
+    
+        protected static function boot()
+        { 
+            parent::boot();
+            static::deleting(function($anuncio)
+            { 
+                if( ! App::runningInConsole() ){
+                    if($anuncio->imagenes()->count()) { 
+                        foreach($anuncio->imagenes as $i) { 
+                            if($i->img) { 
+                                Storage::delete('anuncios/' . $i->img); 
+                            } 
+                        }
+                        $anuncio->imagenes()->delete(); 
+                    }
+                } 
+            });
+        }
+    
     public function nameUser(){
         return $this->belongsTo(User::class, 'id_vendedor');
     }

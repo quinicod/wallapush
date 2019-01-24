@@ -5,7 +5,7 @@
     @if(session('message'))
         <div class="alert alert-{{ session('message')[0] }}"> {{ session('message')[1] }} </div> 
     @endif
-            @foreach($anuncios as $index)
+            @forelse($anuncios as $index)
                 <div class="row justify-content-md-center">
                 @foreach($index as $a)
                     <div class="col-md-3">
@@ -13,6 +13,7 @@
                         @if($a['imagenes'] == '[]')
                             <img class="card-img-top" src="" alt="Card image cap">
                         @else
+                        <a href="">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     @foreach($a['imagenes'] as $index => $i)
@@ -36,16 +37,22 @@
                                     @endif
                                 @endforeach
                                 </div>
-
+                            </a>
                         @endif
                             <div class="card-body">
                                 <h5><strong>{{ substr($a['producto'],0,20) }}... {{ $a['precio'] }}€</strong></h5>
                                 <div id="el_div{{ $a['id']}}">
-                                        <p class="card-text">{{substr($a['descripcion'],0,100)}}...</p>
+                                        <p class="card-text">{{substr($a['descripcion'],0,150)}}...</p>
                                 </div> <br>
-                                <a href="" onclick="expandir(mysql_real_escape_string(stripslashes({{$a['descripcion']}}),{{$a['id']}})">Leer más</a>
+                                <a href="" data-toggle="modal" data-target="#editModal{{ $a['id'] }}">Editar</a> 
                                 <div class="float-md-right">
-                                <a href="" data-toggle="modal" data-target="#editModal{{ $a['id'] }}">Editar</a>                         
+
+                                            <form action="{{ route('vendedor.destroy', ['id' => $a['id']]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="enlace" type="submit">Borrar</button>
+                                            </form>
+                                                           
                                           <!-- Modal -->
                                           <div class="modal fade" id="editModal{{ $a['id'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -57,9 +64,9 @@
                                                   </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <form method="POST" action="{{ route('vendedor.update', ['id' => $a["id"]]) }}" id="edit{{ $a['id'] }}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{ route('vendedor.update', ['id' => $a["id"]]) }}" id="edit{{ $a['id'] }}" enctype="multipart/form-data" onSubmit="arrayImg({{ $a['id'] }})">
                                                             @csrf
-                                                            <input type="hidden" name="id_vendedor" value="{{  Auth::user()->id }}">
+                                                            @method('PUT')
                                                             <div class="form-group row">
                                                                 <label for="producto" class="col-md-4 col-form-label text-md-right">{{ __('Producto') }}</label>
                                     
@@ -169,21 +176,17 @@
                                                                         @endif
                                                                     </div>
                                                             </div>
+                                                            <input type="hidden" id="imgB{{ $a['id'] }}" name="imgBorrado">
                                                         </form>
                                                 </div>
-                                                {{-- @if($imgB != [])
-                                                @foreach($imgB as $img)
-                                                    <input type="hidden" value="{{ $img }}" name="imgBorrado[]">
-                                                @endforeach
-                                            @endif --}}
                                                 <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                  <button type="submit" class="btn btn-primary" from="edit{{ $a['id'] }}">Guardar Cambios</button>
+                                                  <button type="submit" class="btn btn-primary" form="edit{{ $a['id'] }}">Guardar Cambios</button>
                                                 </div>
                                               </div>
                                             </div>
-                                          </div>
-                                        <a href="">Borrar</a>
+                                        </div>
+                                        
                                 </div>
                             </div>
                             
@@ -193,7 +196,13 @@
                 @endforeach
                 </div>
                 <br>
-            @endforeach
+            @empty
+                <div class="text-center">
+                    <br><br>
+                    <h4>No tienes anuncios publicados.</h4>
+                    <a href="{{ route('vendedor.create') }}">Publica uno Aqui!</a>
+                </div>
+            @endforelse
 
 <script type="text/javascript">
     var imgBorrado = new Array();
@@ -208,6 +217,10 @@
             imgBorrado.push(i);
         }
     }
+    function arrayImg(id){
+        var imgB = imgBorrado.toString();
+        document.getElementById("imgB"+id).value = imgB;
+        
+    }
 </script>
-<?php $imgB ="<script>imgBorrado</script>"; ?>
 @endsection

@@ -9,7 +9,7 @@ $factory->define(App\Anuncio::class, function (Faker $faker) {
         'precio'            => $faker->randomElement([10, 50, 100]),
         'nuevo'             => $faker->randomElement([0, 1]),
         'descripcion'       => $faker->paragraph,
-        'id_vendedor'       => \App\User::all()->except(1)->random()->id,
+        'id_vendedor'       => \App\User::all()->except(5)->random()->id,
         'vendido'           => $faker->randomElement([0, 1]),
 
     ];
