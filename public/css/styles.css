@@ -29,3 +29,7 @@ ol.carousel-indicators{
   color:#4771be;
   cursor:pointer;
 }
+
+.vendido{
+  color: red;
+}

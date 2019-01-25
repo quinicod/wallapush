@@ -184,7 +184,7 @@ class AnuncioController extends Controller
     public function misAnuncios()
     {
         $usuario = Auth::id();
-        $anuncios = Anuncio::orderBy('created_at', 'asc')->where('id_vendedor',$usuario)->where('vendido','false')->with('imagenes')->get()->toArray();
+        $anuncios = Anuncio::orderBy('created_at', 'asc')->where('id_vendedor',$usuario)->with('imagenes')->get()->toArray();
         $anuncios=Array_chunk($anuncios,3,true);
         $categorias=Categoria::all();
         $imgBorrado = array();
