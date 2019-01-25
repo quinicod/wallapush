@@ -30,8 +30,7 @@ Route::group(['middleware' => ['verified']], function () {
     #   Compradores: Filtrar búsquedas de productos
     Route::resource('comprador', 'AnuncioController');
 
-    #   Transacciones
-    #   Route::get('transaccion', 'AnuncioController@show');
+    #   Transaccione
     Route::resource('transaccion', 'TransaccionController');
 });
 #   Administrador: Editar usuario

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Anuncio;
 use App\User;
+use Auth;
 
 class TransaccionController extends Controller
 {
@@ -70,7 +71,28 @@ class TransaccionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        #   Actualizamos el anuncio
+            $anuncio = Anuncio::find($id);
+            $anuncio->update(['vendido' => $request->vendido=true]);
+            $anuncio->save();
+        #   Realizamos la transaccion del saldo del comprador...
+            $usuario = Auth::id();
+            $comprador = User::find($usuario);
+            $anuncio = Anuncio::find($id);
+            $precio = $anuncio->precio;
+            $saldo = $comprador->saldo-=$precio;
+            $comprador->update(['saldo' => $request->saldo=$saldo]);
+            $comprador->save();
+        # ... al vendedor
+            $anuncio = Anuncio::find($id);
+            $usuario = $anuncio->id_vendedor;
+            $vendedor = User::find($usuario);
+            $precio = $anuncio->precio;
+            $saldo = $anuncio->nameUser->saldo+=$precio;
+            $vendedor->update(['saldo' => $request->saldo=$saldo]);
+            $vendedor->save();
+        
+        return redirect('/comprador')->with('success', '¡Compra realizada!');
     }
 
     /**

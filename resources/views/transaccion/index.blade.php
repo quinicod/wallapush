@@ -49,15 +49,64 @@
             </div>
         @endforeach
     </div>
-    <!-- Descripción -->
+    <!-- Descripción y precio -->
     <div class="row justify-content-md-center">
-        <h3>Descripción del producto</h3>
+        <h3>Precio: {{ __(":precio", ['precio' => $anuncio->precio]) }}€</h3>
+    </div>
+    <div class="row justify-content-md-center">
+        <h4>Descripción del producto</h4>
     </div>
     <div class="card col-md-3" align="center">
         <p>{{ __(":descripcion", ['descripcion' => $anuncio->descripcion]) }}</p>
     </div>
+    <div><br></div>
+    <!-- Opciones -->
     <div class="row col-md-1 justify-content-md-center">
-        <input type="submit"  value="Comprar" class="btn btn-success btn-block">
+        @if(Auth::user()->saldo > $anuncio->precio)
+        <form action="{{route('transaccion.update', $anuncio->id)}}" method="POST">
+            {{csrf_field()}}
+            <input type="hidden" name="_method"/>
+            <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">
+                Comprar
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                      
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title">Advertencia</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                        <div class="modal-body">
+                            <p>
+                                Va a realizar la compra del producto {{ __(":producto", ['producto' => $anuncio->producto]) }}<br>
+                                Su saldo actual es de {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ 
+                                y pasará a ser {{ __(":saldo", ['saldo' => $comprador->saldo-=$precio]) }}€ tras la compra.<br><br><br>
+                                Por favor, confirme la operación para efectuar el pago.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{route('transaccion.update', $anuncio->id)}}" method="POST">
+                                {{csrf_field()}}
+                                <input name="_method" type="hidden" value="PATCH">
+        
+                                <button class="btn btn-success btn-block" type="submit">Confirmar compra</button>
+                            </form>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        </form>
+        @else
+            <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >No tiene suficiente saldo</a><br>
+            <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger">Saldo: {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ < Precio {{ __(":precio", ['precio' => $anuncio->precio]) }}€</a>
+        @endif
+    </div>
+    <div><br></div>
+    <div class="row col-md-1">
         <a href="{{ route('comprador.index') }}" class="btn btn-info btn-block" >Atrás</a>
     </div>
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Requests\AnuncioRequest;
 use App\Image;
 use \Illuminate\Support\Facades\Storage;
 use App\User;
+use App\Transaccion;
 
 class AnuncioController extends Controller
 {
@@ -93,8 +94,13 @@ class AnuncioController extends Controller
             
             $anuncios = Anuncio::orderBy('created_at', 'asc')->select('id')->where('id', $id)->with('imagenes')->get()->toArray();
             $anuncios=Array_chunk($anuncios,3,true); 
+        
+        #   Simulación de la transacción    
+            $usuario = Auth::id();
+            $comprador = User::find($usuario);
+            $precio = $anuncio->precio;
             
-            return view('transaccion.index', compact('anuncio', 'anuncios'));
+            return view('transaccion.index', compact('anuncio', 'anuncios', 'comprador', 'precio'));
     }
 
     /**

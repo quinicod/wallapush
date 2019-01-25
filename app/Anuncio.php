@@ -41,7 +41,7 @@ class Anuncio extends Model
     public function imagenes(){
         return $this->hasMany(Image::class, 'id_anuncio');
     }
-
+    
     #  Filtrar productos 
     #   <Query Scope>
 
