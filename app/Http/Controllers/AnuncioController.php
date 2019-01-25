@@ -98,9 +98,11 @@ class AnuncioController extends Controller
         #   Simulación de la transacción    
             $usuario = Auth::id();
             $comprador = User::find($usuario);
+            $vendedor = $anuncio->id_vendedor;
+            #   $vendedor = User::find($usuario);
             $precio = $anuncio->precio;
             
-            return view('transaccion.index', compact('anuncio', 'anuncios', 'comprador', 'precio'));
+            return view('transaccion.index', compact('anuncio', 'anuncios', 'comprador', 'precio', 'vendedor', 'usuario'));
     }
 
     /**
@@ -189,6 +191,7 @@ class AnuncioController extends Controller
         $imgBorrado = array();
         $imgB=null;
         //dd($imgBorrado);
-        return view('vendedor/misAnuncios', compact('anuncios','categorias','imgBorrado','imgB'));
+        $anuncio=Anuncio::find('id');
+        return view('vendedor/misAnuncios', compact('anuncio','anuncios','categorias','imgBorrado','imgB'));
     }
 }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    
     @if(session('message'))
         <div class="alert alert-{{ session('message')[0] }}"> {{ session('message')[1] }} </div> 
     @endif
@@ -62,7 +63,7 @@
     <div><br></div>
     <!-- Opciones -->
     <div class="row col-md-1 justify-content-md-center">
-        @if(Auth::user()->saldo > $anuncio->precio)
+        @if(Auth::user()->saldo > $anuncio->precio && !($usuario == $vendedor))
         <form action="{{route('transaccion.update', $anuncio->id)}}" method="POST">
             {{csrf_field()}}
             <input type="hidden" name="_method"/>
@@ -100,13 +101,15 @@
                     </div>
                 </div>
         </form>
-        @else
+        @elseif(Auth::user()->saldo < $anuncio->precio)
             <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >No tiene suficiente saldo</a><br>
             <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger">Saldo: {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ < Precio {{ __(":precio", ['precio' => $anuncio->precio]) }}€</a>
+        @elseif($usuario == $vendedor)
+            <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >Eres el propietario de este anuncio</a><br>
         @endif
     </div>
     <div><br></div>
-    <div class="row col-md-1">
-        <a href="{{ route('comprador.index') }}" class="btn btn-info btn-block" >Atrás</a>
+    <div class="row col-md-1 justify-content-md-center">
+        <a href="{{ route('comprador.index') }}" class="btn btn-info" >Ir al listado de anuncios</a>
     </div>
 @endsection

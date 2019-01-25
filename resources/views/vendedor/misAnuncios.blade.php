@@ -44,7 +44,8 @@
                                 <div id="el_div{{ $a['id']}}">
                                         <p class="card-text">{{substr($a['descripcion'],0,150)}}...</p>
                                 </div> <br>
-                                <a href="" data-toggle="modal" data-target="#editModal{{ $a['id'] }}">Editar</a> 
+                                <a href="" data-toggle="modal" data-target="#editModal{{ $a['id'] }}">Editar</a> <br>
+                                <a href="{{action('AnuncioController@show', $a)}}">Ver anuncio</a>
                                 <div class="float-md-right">
 
                                             <form action="{{ route('vendedor.destroy', ['id' => $a['id']]) }}" method="POST">
