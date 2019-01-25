@@ -99,7 +99,6 @@ class AnuncioController extends Controller
             $usuario = Auth::id();
             $comprador = User::find($usuario);
             $vendedor = $anuncio->id_vendedor;
-            #   $vendedor = User::find($usuario);
             $precio = $anuncio->precio;
             
             return view('transaccion.index', compact('anuncio', 'anuncios', 'comprador', 'precio', 'vendedor', 'usuario'));
