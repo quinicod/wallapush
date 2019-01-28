@@ -33,4 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         } else
             return False;
     }
+
+    public function comprador() {
+        return $this->belongsTo(Transaccion::class, 'id_comprador');
+    }
 }

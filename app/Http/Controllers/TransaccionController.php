@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Anuncio;
 use App\User;
 use Auth;
+use App\Transaccion;
 
 class TransaccionController extends Controller
 {
@@ -16,7 +17,9 @@ class TransaccionController extends Controller
      */
     public function index()
     {
-        //
+        $transaccion = Transaccion::all();
+
+        return view('transaccion.index',compact('transaccion'));
     }
 
     /**
@@ -91,8 +94,15 @@ class TransaccionController extends Controller
             $saldo = $anuncio->nameUser->saldo+=$precio;
             $vendedor->update(['saldo' => $request->saldo=$saldo]);
             $vendedor->save();
-        
-        return redirect('/comprador')->with('success', '¡Compra realizada!');
+        #   Transaccion
+    
+            $transaccion = Transaccion::create([
+                'id_anuncio'    => $id,
+                'id_comprador'  => $usuario,
+            ]);
+
+        return view('transaccion.valoracion', compact('anuncio', 'transaccion'))->with('success', '¡Compra realizada!');
+
     }
 
     /**

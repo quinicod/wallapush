@@ -10,11 +10,11 @@ class Transaccion extends Model
         'id_anuncio', 'id_comprador', 'valoracion'
     ];
 
-    public function ganancia() {
+    public function concepto() {
         return $this->belongsTo(Anuncio::class, 'id');
     }
 
-    public function precio() {
+    public function comprador() {
         return $this->belongsTo(User::class, 'id');
     }
 
