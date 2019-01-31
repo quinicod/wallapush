@@ -101,7 +101,7 @@ class TransaccionController extends Controller
                 'id_comprador'  => $usuario,
             ]);
 
-        return view('transaccion.valoracion', compact('anuncio', 'transaccion'))->with('success', '¡Compra realizada!');
+        return view('transaccion.valoracion', compact('transaccion', 'anuncio'));
 
     }
 

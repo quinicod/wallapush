@@ -30,6 +30,10 @@ ol.carousel-indicators{
   cursor:pointer;
 }
 
+div.caca {
+  background-color: red !important;
+}
+
 .vendido{
   color: red;
 }

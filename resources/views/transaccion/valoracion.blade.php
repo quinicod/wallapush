@@ -3,9 +3,11 @@
 @section('content')
     
     <div class="uper card-body">
+        @if(session()->get('success'))
         <div class="alert alert-success">
-            ¡Compra realizada con éxito! 
+            {{ session()->get('success') }}  
         </div><br />
+        @endif
     </div>
 
     @if(session('message'))
