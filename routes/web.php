@@ -34,6 +34,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('comprador', 'AnuncioController');
 
     #   Transacciones
+    Route::POST('transaccion/{id}', 'CategoriaController@update') ->name('opinion');
     Route::resource('transaccion', 'TransaccionController');
 });
 #   Administrador: Editar usuario
