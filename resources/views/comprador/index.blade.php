@@ -76,7 +76,7 @@
               </td>
               <td>
                   @if($anuncio->vendido == 0)
-                      <a class="navbar-brand" href="{{action('AnuncioController@show', $anuncio->id)}}">
+                      <a class="navbar-brand" href="{{route('vendedor.show', ['id' => $anuncio->id])}}">
                           ¡Lo quiero!
                       </a>
                   @else
