@@ -29,8 +29,11 @@ Route::group(['middleware' => ['verified']], function () {
 
     #   Compradores: Filtrar búsquedas de productos
     Route::resource('comprador', 'AnuncioController');
+    #   Compradores: Lista de compras
+    Route::get('comprador/Mis-Compras', 'AnuncioController@listacompras')->name('misCompras');
+    Route::resource('comprador', 'AnuncioController');
 
-    #   Transaccione
+    #   Transacciones
     Route::resource('transaccion', 'TransaccionController');
 });
 #   Administrador: Editar usuario

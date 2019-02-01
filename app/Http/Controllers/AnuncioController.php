@@ -11,6 +11,7 @@ use App\Image;
 use \Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Transaccion;
+// use Nexmo\User\User;
 
 class AnuncioController extends Controller
 {
@@ -33,7 +34,12 @@ class AnuncioController extends Controller
                 ->paginate(4);
             return view('comprador/index', compact('anuncios'));
     }
-
+    public function listacompras(Request $request)
+    {
+        $idusuarios=Auth::id();
+        $anuncios=Transaccion::where('id_comprador',$idusuarios->id)->get();
+        return view('anuncio.listacompras', compact('anuncios'));
+    }
     /**
      * Show the form for creating a new resource.
      *
