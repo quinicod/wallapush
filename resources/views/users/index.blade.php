@@ -43,11 +43,7 @@
             <td>    
                                     <!-- Button trigger modal-->
                   @if($user->role=='user')
-                  <form action="{{ route('users.destroy', $user->id)}}" method="POST" id="formDelete">
-                      @csrf   
-                      @method('DELETE')                                 
-                  </form>  
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDelete{{$user->id}}">Borrar usuario {{$user->id}}</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDelete{{$user->id}}">Borrar usuario</button>
                   @endif
                   <!--Modal: modalConfirmDelete-->
                   <div class="modal fade" id="modalConfirmDelete{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -57,20 +53,23 @@
                       <div class="modal-content text-center">
                         <!--Header-->
                         <div class="modal-header d-flex justify-content-center btn-danger">
-                          <p class="heading"><strong>Este usuario {{$user->id}} tiene anuncios<br>¿Seguro que quiere eliminarlo?<br><br>NOTA: Se eliminarán también los anuncios asociados al usuario.</strong></p>
+                          <p class="heading"><strong>Este usuario puede tener anuncios publicados.<br>¿Seguro que quiere eliminarlo?<br><br>NOTA: Se eliminarán también los anuncios asociados al usuario.</strong></p>
                         </div>
 
                         <!--Body-->
                         <div class="modal-body">
 
                           <i class="fas fa-times fa-4x animated rotateIn equis"></i>
-
+                          <form action="{{ route('users.destroy', $user->id)}}" method="POST" id="formDelete{{$user->id}}">
+                              @csrf   
+                              @method('DELETE')                                 
+                          </form>  
                         </div>
 
                         <!--Footer-->
                         <div class="modal-footer flex-center">
                           
-                          <button type="submit" class="btn  btn-outline-danger" form="formDelete">Si</button>
+                          <button type="submit" class="btn  btn-outline-danger" form="formDelete{{$user->id}}">Si</button>
                           <a href="" class="btn btn-danger waves-effect">No</a> 
                         </div>
                       </div>
