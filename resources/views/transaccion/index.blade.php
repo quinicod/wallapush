@@ -13,17 +13,15 @@
             <h4>{{ __("Vendido por :id_vendedor", ['id_vendedor' => $anuncio->nameUser->name]) }}</h4>
         </div>
         <!-- Imagen -->
-        @foreach($anuncios as $index)
             <div class="row justify-content-md-center">
-            @foreach($index as $a)
                 <div class="col-md-3">
                     <div class="card">
-                    @if($a['imagenes'] == '[]')
+                    @if($anuncio->imagenes == '[]')
                         <img class="card-img-top" src="" alt="Card image cap">
                     @endif
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @foreach($a['imagenes'] as $index => $i)
+                            @foreach($anuncio->imagenes as $index => $i)
                                 @if($index == 0)
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 @else
@@ -32,23 +30,21 @@
                             @endforeach
                         </ol>
                         <div class="carousel-inner">
-                        @foreach($a['imagenes'] as $index => $i)
+                        @foreach($anuncio->imagenes as $index => $i)
                             @if($index == 0)
                                 <div class="carousel-item active">
-                                    <img src="{{asset('../storage/app/anuncios/'.$i['img'])}}" class="d-block w-100">
+                                    <img src="{{asset('../storage/app/anuncios/'.$i->img)}}" class="d-block w-100">
                                 </div>
                             @else
                                 <div class="carousel-item">
-                                    <img src="{{asset('../storage/app/anuncios/'.$i['img'])}}" class="d-block w-100">
+                                    <img src="{{asset('../storage/app/anuncios/'.$i->img)}}" class="d-block w-100">
                                 </div>
                             @endif
                         @endforeach
                         </div>
                     </div>
                 </div>
-            @endforeach
             </div>
-        @endforeach
     </div>
     <!-- Descripción y precio -->
     <div class="row justify-content-md-center">

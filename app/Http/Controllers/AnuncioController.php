@@ -97,9 +97,6 @@ class AnuncioController extends Controller
     {   
         #   Mostrar anuncio con sus atributos (producto, vendedor, imagen, descripción...)
             $anuncio=Anuncio::find($id);
-            
-            $anuncios = Anuncio::orderBy('created_at', 'asc')->select('id')->where('id', $id)->with('imagenes')->get()->toArray();
-            $anuncios=Array_chunk($anuncios,3,true); 
         
         #   Simulación de la transacción    
             $usuario = Auth::id();
@@ -107,7 +104,7 @@ class AnuncioController extends Controller
             $vendedor = $anuncio->id_vendedor;
             $precio = $anuncio->precio;
             
-            return view('transaccion.index', compact('anuncio', 'anuncios', 'comprador', 'precio', 'vendedor', 'usuario'));
+            return view('transaccion.index', compact('anuncio', 'comprador', 'precio', 'vendedor', 'usuario'));
     }
 
     /**
