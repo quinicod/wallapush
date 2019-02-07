@@ -91,5 +91,11 @@
           @endforeach
       </tbody>
     </table>
+    
+    <!-- Paginación -->
+
+    {{ $users->links() }}
+
+    <!-- Fin - Paginación -->
   </div>
 @endsection

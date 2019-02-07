@@ -22,8 +22,8 @@ class AnuncioController extends Controller
      */
     public function index()
     {
-        #   Mostrar anuncios
-            $anuncios = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->paginate(6);
+        #   Mostrar anuncios con su imagen
+            $anuncios = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->paginate(20);
 
             return view('comprador/index', compact('anuncios'));
     }
@@ -39,7 +39,7 @@ class AnuncioController extends Controller
                 ->Producto($producto)
                 ->Descripcion($descripcion)
                 ->Categoria($opcion_categoria)
-                ->paginate(6);
+                ->paginate(8);
 
             return view('comprador/index', compact('anuncios'));
     }

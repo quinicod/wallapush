@@ -59,6 +59,6 @@ class DatabaseSeeder extends Seeder
             'actived'   => 1
         ]);
 
-        #   factory(\App\Anuncio::class, 100)->create();
+        factory(\App\Anuncio::class, 100)->create();
     }
 }

@@ -22,7 +22,7 @@
 <div class="row justify-content-md-center">
     <h1>
         Buscar Productos
-        {{ Form::open(['route' => 'filtros', 'method' => 'POST', 'class' => 'form-inline pull-right']) }}
+        {{ Form::open(['route' => 'filtros', 'method' => 'GET', 'class' => 'form-inline pull-right']) }}
         <div class="form-group">
             {{ Form::text('producto', null, ['class' => 'form-control', 'placeholder' => 'Producto']) }}
         </div>
@@ -82,7 +82,11 @@
               <p class="card-text">{{substr($a->descripcion,0,150)}}...</p>
             </div> <br>
             @if($a->vendido == false)
-              <a href="" data-toggle="modal" data-target="#editModal{{ $a->id }}">Editar</a> 
+              <a class="btn btn-success btn-block" href="{{route('vendedor.show', ['id' => $a->id])}}">
+                ¡Lo quiero!
+              </a>
+            @else
+              <button class="btn btn-info btn-danger btn-block">¡Lo sentimos, no está a la venta!</button> 
             @endif
         </div>
       </div>
@@ -105,9 +109,4 @@
 
 <!-- Fin - Paginación -->
 
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('#filtro').DataTable();
-  } );
-</script>
 @endsection
