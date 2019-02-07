@@ -46,8 +46,8 @@ class AnuncioController extends Controller
     public function listacompras(Request $request)
     {
         $idusuarios=Auth::id();
-        $anuncios=Transaccion::where('id_comprador',$idusuarios->id)->get();
-        return view('anuncio.listacompras', compact('anuncios'));
+        $anuncios=Transaccion::where('id_comprador',$idusuarios)->get();
+        return view('comprador/listacompras', compact('anuncios'));
     }
     /**
      * Show the form for creating a new resource.
