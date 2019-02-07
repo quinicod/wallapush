@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="row" align= "center">
+<div class="row justify-content-md-center" align= "center">
 	<section class="content">
 		<div class="col-md-8 col-md-offset-2">
 			@if (count($errors) > 0)
@@ -65,7 +65,6 @@
 						</form>
 					</div>
 				</div>
- 
 			</div>
 		</div>
 	</section>

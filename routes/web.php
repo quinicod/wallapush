@@ -28,7 +28,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::resource('vendedor', 'AnuncioController');
 
     #   Compradores: Filtrar búsquedas de productos
-    Route::post('anuncios/filtros', 'AnuncioController@filtros')->name('filtros');
+    Route::get('anuncios/filtros', 'AnuncioController@filtros')->name('filtros');
     Route::resource('comprador', 'AnuncioController');
 
     #   Transacciones
