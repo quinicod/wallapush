@@ -22,16 +22,18 @@
 
 		<section class="content">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default" align= "center">
+				<div class="card panel panel-default" align="center">
 					<div class="panel-heading">
-						<h3 class="panel-title">Panel de Administración de Usuario: {{$user->name}}</h3>
+                		<div class="card-header">
+							<h4 class="panel-title">Panel de Administración de Usuario: {{$user->name}}</h4>
+						</div>
 					</div>
 					<div class="panel-body">					
-						<div class="table-container">
+						<div class="card-body table-container">
 							<form method="POST" action="{{ route('users.update',$user->id) }}"  role="form">
 								{{ csrf_field() }}
 								<input name="_method" type="hidden" value="PATCH">
-								<div class="row" align= "center">
+								<div class="form-group row" align= "center">
 									<div class="col-xs-6 col-sm-6 col-md-6">
 										<div class="form-group">
 										<strong>Saldo</strong>
@@ -59,12 +61,11 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
+								<div class="form-group row">
 									<div class="col-xs-12 col-sm-12 col-md-12">
 										<input type="submit"  value="Actualizar" class="btn btn-success btn-block">
 										<a href="{{ route('users.index') }}" class="btn btn-info btn-block" >Atrás</a>
 									</div>	
-	
 								</div>
 							</form>
 						</div>
