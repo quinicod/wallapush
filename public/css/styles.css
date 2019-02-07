@@ -37,3 +37,17 @@ div.caca {
 .vendido{
   color: red;
 }
+.card-header{
+  background-color: red;
+}
+.form-check-label:hover{
+  color:red;
+}
+.form-check-input:hover{
+  color:red;
+}
+.btn btn-link{
+  color:red;
+  background-color:red;
+  text-decoration-color:red;
+}

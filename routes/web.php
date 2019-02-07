@@ -25,14 +25,11 @@ Route::group(['middleware' => ['verified']], function () {
 
     //usuario-vendedor crud Anuncio
     Route::get('vendedor/Mis-Anuncios', 'AnuncioController@misAnuncios')->name('misAnuncios');
+    Route::get('comprador/Mis-Compras', 'AnuncioController@listacompras')->name('misCompras');
     Route::resource('vendedor', 'AnuncioController');
 
     #   Compradores: Filtrar búsquedas de productos
     Route::resource('comprador', 'AnuncioController');
-    #   Compradores: Lista de compras
-    Route::get('comprador/Mis-Compras', 'AnuncioController@listacompras')->name('misCompras');
-    Route::resource('comprador', 'AnuncioController');
-
     #   Transacciones
     Route::POST('transaccion/{id}', 'CategoriaController@update') ->name('opinion');
     Route::resource('transaccion', 'TransaccionController');

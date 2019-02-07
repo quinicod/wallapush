@@ -31,11 +31,6 @@
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-dark" name="listado compras">
-                <a href= "{{route('misCompras')}}">Lista Compras</a>
-                </button>
-            </div>
         {{ Form::close() }}
     </h1>
   </div>
