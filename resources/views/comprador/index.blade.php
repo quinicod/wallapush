@@ -22,7 +22,7 @@
 <div class="row justify-content-md-center">
     <h1>
         Buscar Productos
-        {{ Form::open(['route' => 'comprador.index', 'method' => 'GET', 'class' => 'form-inline pull-right']) }}
+        {{ Form::open(['route' => 'filtros', 'method' => 'POST', 'class' => 'form-inline pull-right']) }}
         <div class="form-group">
             {{ Form::text('producto', null, ['class' => 'form-control', 'placeholder' => 'Producto']) }}
         </div>
@@ -43,18 +43,18 @@
 </div>
 
 <!-- Fin - Filtro de búsqueda -->
-@forelse($producto as $index)
-<table id="filtro" class="display">
+<div class="container-fluid">
+
 <div class="row justify-content-md-center">
-  @foreach($index as $a)
+    @forelse($anuncios as $a)
     <div class="col-md-3">
       <div class="card">
-        @if($a['imagenes'] == '[]')
+        @if($a->imagenes == '[]')
           <img class="card-img-top" src="" alt="Card image cap">
         @endif
           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-              @foreach($a['imagenes'] as $index => $i)
+              @foreach($a->imagenes as $index => $i)
                 @if($index == 0)
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 @else
@@ -63,48 +63,45 @@
               @endforeach
             </ol>
             <div class="carousel-inner">
-              @foreach($a['imagenes'] as $index => $i)
+              @foreach($a->imagenes as $index => $i)
                 @if($index == 0)
                   <div class="carousel-item active">
-                    <img src="{{asset('../storage/app/anuncios/'.$i['img'])}}" class="d-block w-100">
+                    <img src="{{asset('../storage/app/anuncios/'.$i->img)}}" class="d-block w-100">
                   </div>
                 @else
                   <div class="carousel-item">
-                    <img src="{{asset('../storage/app/anuncios/'.$i['img'])}}" class="d-block w-100">
+                    <img src="{{asset('../storage/app/anuncios/'.$i->img)}}" class="d-block w-100">
                   </div>
                 @endif
               @endforeach
             </div>
-          </div>
+          </div> 
         <div class="card-body">
-          <h5><strong>{{ substr($a['producto'],0,20) }}... {{ $a['precio'] }}€</strong></h5>
-            <div id="el_div{{ $a['id']}}">
-              <p class="card-text">{{substr($a['descripcion'],0,150)}}...</p>
+          <h5><strong>{{ substr($a->producto,0,20) }}... {{ $a->precio }}€</strong></h5>
+            <div id="el_div{{ $a->id}}">
+              <p class="card-text">{{substr($a->descripcion,0,150)}}...</p>
             </div> <br>
-            @if($a['vendido'] == false)
-              <a href="" data-toggle="modal" data-target="#editModal{{ $a['id'] }}">Editar</a> 
+            @if($a->vendido == false)
+              <a href="" data-toggle="modal" data-target="#editModal{{ $a->id }}">Editar</a> 
             @endif
         </div>
       </div>
+    </div> 
+    @empty
+    <div class="text-center">
+        <br><br>
+        <h4>No hay anuncios publicados.</h4>
+        <a href="{{ route('vendedor.create') }}">¡Publica uno Aquí!</a>
     </div>
-    @endforeach
+  @endforelse
   </div>
 </div>
 <br>
-</table>
-@empty
-  <div class="text-center">
-      <br><br>
-      <h4>No hay anuncios publicados.</h4>
-      <a href="{{ route('vendedor.create') }}">¡Publica uno Aquí!</a>
-  </div>
-@endforelse
+
 
 <!-- Paginación -->
 
-@if($anuncios->count())
-{!! $anuncios->appends(Request::only(['producto', 'descripcion' , 'id_categoria']))->render() !!}
-@endif
+{{ $anuncios->links() }}
 
 <!-- Fin - Paginación -->
 <script type="text/javascript">

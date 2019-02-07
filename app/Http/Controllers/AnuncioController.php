@@ -19,7 +19,15 @@ class AnuncioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
+    {
+        #   Mostrar anuncios
+            $anuncios = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->paginate(6);
+
+            return view('comprador/index', compact('anuncios'));
+    }
+
+    public function filtros(Request $request)
     {
         #   Filtrar búsquedas
             $producto  = $request->get('producto');
@@ -30,13 +38,9 @@ class AnuncioController extends Controller
                 ->Producto($producto)
                 ->Descripcion($descripcion)
                 ->Categoria($opcion_categoria)
-                ->paginate(4);
-            
-        #   Mostrar anuncios
-            $producto = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->get()->toArray();
-            $producto=Array_chunk($producto,3,true);
+                ->paginate(6);
 
-            return view('comprador/index', compact('anuncios', 'producto'));
+            return view('comprador/index', compact('anuncios'));
     }
 
     /**
