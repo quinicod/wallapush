@@ -22,8 +22,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/glyphicon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    
 </head>
 <body>
     <div id="app">
@@ -66,7 +68,9 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->isAdmin())
-                                        <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> Administrar usuarios</a>
+                                        <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> 
+                                            <span class="glyphicon glyphicon-user"></span> Administrar usuarios
+                                        </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir Anuncio</a>
                                     <a class="dropdown-item" href="{{ route('misAnuncios') }}"> Mis Anuncios</a>
@@ -74,7 +78,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <span class="glyphicon glyphicon-off"></span> Cerrar sesión
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
