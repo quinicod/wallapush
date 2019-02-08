@@ -11,11 +11,14 @@ class Transaccion extends Model
     ];
 
     public function concepto() {
-        return $this->belongsTo(Anuncio::class, 'id');
+        return $this->belongsTo(Anuncio::class, 'id_anuncio');
     }
 
     public function comprador() {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'id_comprador');
     }
 
+    public function anuncio(){
+        return $this->belongsTo(Anuncio::class, 'id_anuncio');
+    }
 }
