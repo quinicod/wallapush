@@ -95,7 +95,7 @@ class TransaccionController extends Controller
             $vendedor->update(['saldo' => $request->saldo=$saldo]);
             $vendedor->save();
         #   Transaccion
-    
+            $usuario = Auth::id();
             $transaccion = Transaccion::create([
                 'id_anuncio'    => $id,
                 'id_comprador'  => $usuario,
