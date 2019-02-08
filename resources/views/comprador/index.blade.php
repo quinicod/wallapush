@@ -85,7 +85,7 @@
               </div> <br>
               @if($a->vendido == false)
                 <a class="btn btn-success btn-block" href="{{route('vendedor.show', ['id' => $a->id])}}">
-                  ¡Lo quiero!
+                  ¡Lo quiero! <span class="glyphicon glyphicon-heart"></span>
                 </a>
               @else
                 <button class="btn btn-info btn-danger btn-block">¡Lo sentimos, no está a la venta!</button> 
