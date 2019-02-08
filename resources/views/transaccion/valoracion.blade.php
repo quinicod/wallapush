@@ -41,7 +41,7 @@
                     </div>
                         <div class="modal-body">
                             <h2> Otorga una puntuación del 1 al 5 </h2>
-                            <h6> Siendo 1 MUY INSATISFECHO y 5 MUY SATISFECHO</h6>
+                            <h6> Siendo <strong>1</strong> MUY INSATISFECHO y <strong>5</strong> MUY SATISFECHO</h6>
                                 <input type="radio" name="valoracion" id="valoracion" class="" value="1" {{ $transaccion->valoracion == 1 }}>  1<br>
                                     
                                 <input type="radio" name="valoracion" id="valoracion" class="" value="2" {{ $transaccion->valoracion == 2 }}>  2<br>
@@ -57,14 +57,16 @@
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="POST">
         
-                                <button class="btn btn-success btn-block" type="submit">Dar opinión</button>
+                                <button class="btn btn-warning btn-block" type="submit">
+                                    <span class="glyphicon glyphicon-star"></span> Valorar
+                                </button>
                             </form>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-outline-dark btn-default" data-dismiss="modal">Cancelar</button>
                           </div>
                         </div>
                     </div>
                 </div>
         </form>
-        <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >No, gracias</a>
-    <div>
+</div><br>
+    <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >No, gracias</a>
 @endsection
