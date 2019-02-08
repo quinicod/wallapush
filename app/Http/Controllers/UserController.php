@@ -73,7 +73,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,['saldo'=>'required|integer', 'actived' => 'required']);
+        $this->validate($request,['saldo'=>'required|integer|Min:0', 'actived' => 'required']);
 
         $user = User::find($id)->update($request->all());
 
