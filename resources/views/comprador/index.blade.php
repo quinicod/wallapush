@@ -36,7 +36,7 @@
       </div>
       <div class="form-group">
           <button type="submit" class="btn btn-default">
-              <span class="glyphicon glyphicon-search"></span>
+            <span class="glyphicon glyphicon-search"></span>
           </button>
       </div>
       {{ Form::close() }}
