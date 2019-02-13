@@ -7,16 +7,16 @@
     @endif
         @forelse($compras as $compra)
             <div class="row justify-content-md-center">
-            {{-- @foreach($compra as $c)
+            @foreach($compra as $c)
                 <div class="col-md-3">
-                    <div class="card"> --}}
-                    {{-- @if($c['imagenes'] == '[]')
+                    <div class="card">
+                    @if($c['anuncio']['imagenes'] == '[]')
                         <img class="card-img-top" src="" alt="Card image cap">
                     @else
                     <a href="">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                @foreach($c['imagenes'] as $index => $i)
+                                @foreach($c['anuncio']['imagenes'] as $index => $i)
                                     @if($index == 0)
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                     @else
@@ -25,7 +25,7 @@
                                 @endforeach
                             </ol>
                             <div class="carousel-inner">
-                            @foreach($c['imagenes'] as $index => $i)
+                            @foreach($c['anuncio']['imagenes'] as $index => $i)
                                 @if($index == 0)
                                     <div class="carousel-item active">
                                         <img src="{{asset('../storage/app/anuncios/'.$i['img'])}}" class="d-block w-100">
@@ -39,11 +39,11 @@
                             </div>
                         </div>
                     </a>
-                    @endif --}}
+                    @endif
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5><strong>{{ $compra['id_anuncio'] }}... {{ $compra['valoracion'] }}</strong></h5>
+                            <h5><strong>{{ $c['valoracion'] }}</strong></h5>
                             <div class="float-md-right">
                                 <p class="vendido">Comprado</p>
                             </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        {{-- @endforeach --}}
+        @endforeach
         </div>
         <br>
         @empty

@@ -46,7 +46,9 @@ class AnuncioController extends Controller
     public function listacompras(Request $request)
     {
         $idusuarios=Auth::user();
-        $compras=Transaccion::where('id_comprador',$idusuarios->id)->with('concepto', 'anuncio.imagenes')->get();
+        $compras=Transaccion::where('id_comprador',$idusuarios->id)->with('concepto', 'anuncio.imagenes')->get()->toArray();
+        $compras=array_chunk($compras,3);
+        // dd($compras[0][1]['anuncio']['imagenes']);
         return view('comprador/listacompras', compact('compras'));
     }
     /**
