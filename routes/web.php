@@ -14,15 +14,12 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
+Route::get('/', 'HomeController@inicio')->name('home');
+Route::get('/anuncios', 'HomeController@index')->name('anuncios');
+Route::get('/filtro', 'HomeController@filtros')->name('filtro');
 
 Route::group(['middleware' => ['verified']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-
     //usuario-vendedor crud Anuncio
     Route::get('vendedor/Mis-Anuncios', 'AnuncioController@misAnuncios')->name('misAnuncios');
     Route::get('comprador/Mis-Compras', 'AnuncioController@listacompras')->name('misCompras');

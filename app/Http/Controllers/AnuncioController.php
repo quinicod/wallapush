@@ -31,13 +31,13 @@ class AnuncioController extends Controller
     public function filtros(Request $request)
     {
         #   Filtrar búsquedas
+        // $anuncios = Anuncio::where('producto','LIKE', "%$producto%")->orWhere('descripcion','LIKE', "%$producto%")->orderBy('id', 'DESC')->paginate(8);
             $producto  = $request->get('producto');
-            $descripcion = $request->get('descripcion');
             $opcion_categoria   = $request->get('id_categoria');
 
             $anuncios = Anuncio::orderBy('id', 'DESC')
                 ->Producto($producto)
-                ->Descripcion($descripcion)
+                ->Descripcion($producto)
                 ->Categoria($opcion_categoria)
                 ->paginate(8);
 
