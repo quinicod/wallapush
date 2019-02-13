@@ -45,11 +45,11 @@
                   <p>Desactivada</p>
                 @endif
               </td>
-              <td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary">Editar</a></td>
+              <td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
               <td align="center">    
                                       <!-- Button trigger modal-->
                     @if($user->role=='user')
-                      <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDelete{{$user->id}}">Borrar</button>
+                      <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDelete{{$user->id}}"><span class="glyphicon glyphicon-trash"></span></button>
                     @endif
                     <!--Modal: modalConfirmDelete-->
                     <div class="modal fade" id="modalConfirmDelete{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

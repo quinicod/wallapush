@@ -53,13 +53,13 @@ class Anuncio extends Model
         public function scopeProducto($query, $producto)
         {
             if($producto)
-                return $query->where('producto', 'LIKE', "%$producto%");
+                return $query->where('producto', 'LIKE', "%". $producto. "%");
         }
 
-        public function scopeDescripcion($query, $descripcion)
+        public function scopeDescripcion($query, $producto)
         {
-            if($descripcion)
-                return $query->where('descripcion', 'LIKE', "%$descripcion%");
+            if($producto)
+                return $query->orWhere('descripcion', 'LIKE', "%" .$producto. "%");
         }
 
         public function scopeCategoria($query, $opcion_categoria)
@@ -68,7 +68,7 @@ class Anuncio extends Model
 
             if($opciones_categorias != "" && isset($opciones_categorias[$opcion_categoria])) 
             {
-                $query->where('id_categoria', 'LIKE', $opcion_categoria);
+                $query->orWhere('id_categoria', 'LIKE', $opcion_categoria);
             }
         }
 }

@@ -23,12 +23,9 @@
 <div class="row justify-content-md-center">
   <h1>
       Buscar Productos
-      {{ Form::open(['route' => 'filtros', 'method' => 'GET', 'class' => 'form-inline pull-right']) }}
+      {{ Form::open(['route' => 'filtro', 'method' => 'GET', 'class' => 'form-inline pull-right']) }}
       <div class="form-group">
           {{ Form::text('producto', null, ['class' => 'form-control', 'placeholder' => 'Producto']) }}
-      </div>
-      <div class="form-group">
-          {{ Form::text('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Descripción']) }}
       </div>
       <div class="form-group">
           {{ Form::select('id_categoria', config('filtrocategorias.opciones_categorias'), null, ['class' =>
@@ -47,7 +44,7 @@
 
 <div class="container-fluid">
 
-  <div class="row justify-content-md-center">
+  <div class="row">
     @forelse($anuncios as $a)
       <div class="col-md-3">
         <div class="card">
@@ -81,6 +78,7 @@
           <div class="card-body">
             <h5><strong>{{ substr($a->producto,0,20) }}... {{ $a->precio }}€</strong></h5>
               <div id="el_div{{ $a->id}}">
+                {{-- @if(strlen($a->descripcion) <) --}}
                 <p class="card-text">{{substr($a->descripcion,0,150)}}...</p>
               </div> <br>
               @if($a->vendido == false)
@@ -94,9 +92,9 @@
         </div><br>
       </div> 
       @empty
-      <div class="text-center">
+      <div class="text-center offset-md-5">
           <br><br>
-          <h4>No hay anuncios publicados.</h4>
+          <h4>No se han encontrado anuncios.</h4>
           <a href="{{ route('vendedor.create') }}">¡Publica uno Aquí!</a>
       </div>
     @endforelse
