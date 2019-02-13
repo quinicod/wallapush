@@ -12,7 +12,6 @@
                 <h4>{{ __("Vendido por :id_vendedor", ['id_vendedor' => $anuncio->nameUser->name]) }}</h4>
             </div>
         </div><br>
-        <!--  -->
         <!-- Imagen -->
         <div class="row justify-content-md-center">
             <div class="col-md-3">
