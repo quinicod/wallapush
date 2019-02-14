@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Transaccion;
 use App\Anuncio;
+use App\Categoria;
 
 class UserController extends Controller
 {
@@ -111,8 +112,13 @@ class UserController extends Controller
 
         return redirect('/users?admin')->with('success', 'Usuario eliminado con éxito.');
     }
+
+    public function listadocat(){
+        return view('users.listadodecategorias', compact('categorias'));
+    }
     public function listado2(Request $req){
         $anuncios=Anuncio::whereBetween('created_at',[$req->fecha_ini, $req->fecha_fin])->where('id_categoria', $req->id_categoria)->with('concepto')->get();
+        // dd($anuncios);
         foreach ($anuncios->concepto as $t){
             
         }

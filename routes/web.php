@@ -37,7 +37,7 @@ Route::group(['middleware' => ['verified']], function () {
 #   Administrador: Editar usuario
 Route::group(['middleware' => ['admin']], function () {
     Route::get('users/listado-mejores-vendedores', 'UserController@listado1')->name('listado1');
-    Route::get('users/listado-por-categorias', 'UserController@listado2')->name('listado2');
+    Route::get('users/listado-por-categorias', 'UserController@listadocat')->name('listado2');
     Route::get('users/listado-mejores-valorados', 'UserController@listado3')->name('listado3');
     Route::resource('users', 'UserController');
 });
