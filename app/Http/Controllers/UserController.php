@@ -114,14 +114,14 @@ class UserController extends Controller
     }
 
     public function listadocat(){
-        return view('users.listadodecategorias', compact('categorias'));
+        $anuncios=Array();
+        $categorias=Categoria::all();
+        return view('users.listadodecategorias', compact('categorias', 'anuncios'));
     }
     public function listado2(Request $req){
-        $anuncios=Anuncio::whereBetween('created_at',[$req->fecha_ini, $req->fecha_fin])->where('id_categoria', $req->id_categoria)->with('concepto')->get();
-        // dd($anuncios);
-        foreach ($anuncios->concepto as $t){
-            
-        }
+        $categorias=Categoria::all();
+        $anuncios=Anuncio::where('created_at','>=',$req->fecha_inicio)->where('created_at','<=',$req->fecha_fin)->where('id_categoria', $req->id_categoria)->with('transaccion', 'nameCategoria', 'nameUser')->get();
+        return view('users.listadodecategorias', compact('categorias', 'anuncios'));
     }
 
 }

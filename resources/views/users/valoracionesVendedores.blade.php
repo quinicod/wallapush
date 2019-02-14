@@ -17,12 +17,13 @@
 
   <div class="container-fluid">
     <div class="row">
-        <div class="col-md-7 offset-1">
+        <div class="col-md-6 offset-1">
             <h4>Los mejores valorados</h4>
         </div>
         <div class="col md 4">
             <a href="{{ route('users.index', 'admin') }}" class="btn btn-outline-secondary">Listado</a>
             <a href="{{ route('listado1') }}" class="btn btn-outline-warning">Mejores Vendedores</a>
+            <a href="{{ route('listado2') }}" class="btn btn-outline-info">Ventas por Categoria</a>
             <a href="{{ route('listado3') }}" class="btn btn-outline-success">Mejor valorados</a>
         </div>
     </div>
