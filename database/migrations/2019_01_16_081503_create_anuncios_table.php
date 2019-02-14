@@ -27,7 +27,7 @@ class CreateAnunciosTable extends Migration
             $table->boolean('vendido')->default(false);
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

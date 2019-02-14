@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@inicio')->name('home');
 Route::get('/anuncios', 'HomeController@index')->name('anuncios');
 Route::get('/filtro', 'HomeController@filtros')->name('filtro');
 
+
 Route::group(['middleware' => ['verified']], function () {
     //usuario-vendedor crud Anuncio
     Route::get('vendedor/Mis-Anuncios', 'AnuncioController@misAnuncios')->name('misAnuncios');
@@ -34,5 +35,6 @@ Route::group(['middleware' => ['verified']], function () {
 });
 #   Administrador: Editar usuario
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('anuncios/listadocat', 'ListadosController@listadodos')->name('listadoxcat');
     Route::resource('users', 'UserController');
 });

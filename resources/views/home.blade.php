@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Has iniciado sesión!
                     @if(Auth::user()->isAdmin())
                         Hola usuario administrador.
                     @endif

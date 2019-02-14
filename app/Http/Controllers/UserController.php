@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Transaccion;
 
 class UserController extends Controller
 {
@@ -92,5 +93,11 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('/users?admin')->with('success', 'Usuario eliminado con éxito.');
+    }
+    public function listadoxcat(Request $req){
+        $anuncios=anuncio::all();
+        $categorias=categoria::name();
+        $ventas=Transaccion::anuncio()->where('create_at'>=$req->fini)->where('create_at'<=$req->ffin)->where('id_categoria', $req->categoria)->get();
+        $dd($ventas);
     }
 }

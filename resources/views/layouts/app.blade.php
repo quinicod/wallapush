@@ -68,6 +68,9 @@
                                         <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> 
                                             <span class="glyphicon glyphicon-user"></span> Administrar usuarios
                                         </a>
+                                        <a class="dropdown-item" href="{{ route('listadoxcat', 'admin') }}"> 
+                                                <span class="glyphicon glyphicon-user"></span> listado por categorias
+                                        </a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir Anuncio</a>
                                     <a class="dropdown-item" href="{{ route('misAnuncios') }}"> Mis Anuncios</a>
