@@ -18,7 +18,7 @@
   <!-- Lista de usuarios -->
 
   <div class="container">
-    <table class="table table-striped">
+    <table class="table table-striped"  id="myTable">
       <thead>
           <tr>
             <td align="center"><strong>Nombre</strong></td>
@@ -27,7 +27,8 @@
             <td align="center"><strong>Localidad</strong></td>
             <td align="center"><strong>Saldo</strong></td>
             <td align="center"><strong>Estado de la cuenta</strong></td>
-            <td colspan="2" align="center"><strong>Acciones de administración</strong></td>
+            <td align="center"><strong>Acciones de administración</strong></td>
+            <td></td>
           </tr>
       </thead>
       <tbody>
@@ -91,11 +92,18 @@
           @endforeach
       </tbody>
     </table>
-    
     <!-- Paginación -->
-
-    {{ $users->links() }}
 
     <!-- Fin - Paginación -->
   </div>
+@endsection
+@section('script')
+<script>
+  $(document).ready(function() {
+    $('#myTable').DataTable({
+      'order': [[0,'desc']],
+      'stateSave' : true
+    });
+  });
+</script>
 @endsection

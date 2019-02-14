@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         #   Mostrar usuarios por orden alfabético
-            $users = User::orderBy('name', 'ASC')->paginate(10);
+            $users = User::orderBy('name', 'ASC')->get();
 
             return view('users.index', compact('users'));
     }

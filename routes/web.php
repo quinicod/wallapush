@@ -16,6 +16,7 @@ use GuzzleHttp\Middleware;
 
 Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@inicio')->name('home');
+Route::get('/home', 'HomeController@inicio')->name('home');
 Route::get('/anuncios', 'HomeController@index')->name('anuncios');
 Route::get('/filtro', 'HomeController@filtros')->name('filtro');
 

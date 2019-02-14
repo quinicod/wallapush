@@ -9,7 +9,7 @@ use App\Categoria;
 class HomeController extends Controller
 {
     public function inicio(){
-        return redirect()->route('home');
+        return redirect()->route('anuncios');
     }
     public function index()
     {
