@@ -10,7 +10,7 @@ $factory->define(App\Anuncio::class, function (Faker $faker) {
         'nuevo'             => $faker->randomElement([0, 1]),
         'descripcion'       => $faker->paragraph,
         'id_vendedor'       => \App\User::all()->except(5)->random()->id,
-        'vendido'           => $faker->randomElement([0, 1]),
+        'vendido'           => 0,
 
     ];
 });

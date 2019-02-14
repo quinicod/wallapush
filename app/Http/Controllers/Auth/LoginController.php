@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/vendedor/Mis-Anuncios';
 
     /**
      * Create a new controller instance.
@@ -38,12 +38,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    protected function validateLogin(Request $request)
+    protected function credentials(Request $request)
     {
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-            'actived' => '1',
-        ]);
+        $request['actived']=true;
+        $request['email_verified_at']!=NULL;
+        return $request->only($this->username(), 'password', 'actived','email_verified_at');
     }
 }

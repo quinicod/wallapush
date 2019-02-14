@@ -52,15 +52,7 @@
             <div class="alert alert-danger"> Este anuncio no tiene imágenes. </div>
           @endif
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                @foreach($a->imagenes as $index => $i)
-                  @if($index == 0)
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  @else
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"></li>
-                  @endif
-                @endforeach
-              </ol>
+              
               <div class="carousel-inner">
                 @foreach($a->imagenes as $index => $i)
                   @if($index == 0)

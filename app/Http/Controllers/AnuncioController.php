@@ -23,7 +23,7 @@ class AnuncioController extends Controller
     public function index()
     {
         #   Mostrar anuncios con su imagen
-            $anuncios = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->paginate(20);
+            $anuncios = Anuncio::orderBy('created_at', 'ASC')->nameUser()->where('actived',true)->with('imagenes')->paginate(20);
 
             return view('comprador/index', compact('anuncios'));
     }

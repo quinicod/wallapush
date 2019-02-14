@@ -31,11 +31,13 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('anuncios/filtros', 'AnuncioController@filtros')->name('filtros');
     Route::resource('comprador', 'AnuncioController');
     #   Transacciones
-    Route::POST('transaccion/{id}', 'CategoriaController@update') ->name('opinion');
+    Route::post('transaccion/{id}', 'CategoriaController@update') ->name('opinion');
     Route::resource('transaccion', 'TransaccionController');
 });
 #   Administrador: Editar usuario
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('users/listado-mejores-vendedores', 'UserController@listado1')->name('listado1');
     Route::get('users/listado-por-categorias', 'UserController@listado2')->name('listado2');
+    Route::get('users/listado-mejores-valorados', 'UserController@listado3')->name('listado3');
     Route::resource('users', 'UserController');
 });

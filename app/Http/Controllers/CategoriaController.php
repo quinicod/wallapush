@@ -76,7 +76,8 @@ class CategoriaController extends Controller
             $this->validate($request,['valoracion'=>'required|integer']);
             $transaccion = Transaccion::find($id)->update($request->all());
             
-            return redirect("/comprador")->with('success', "¡Valoración realizada con éxito!");
+            
+            return redirect()->route('anuncios')->with('success', "¡Valoración realizada con éxito!");
     }
 
     /**
