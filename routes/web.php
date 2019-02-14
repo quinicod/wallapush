@@ -36,6 +36,6 @@ Route::group(['middleware' => ['verified']], function () {
 });
 #   Administrador: Editar usuario
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('anuncios/listadocat', 'ListadosController@listadodos')->name('listadoxcat');
+    Route::get('users/listado-por-categorias', 'UserController@listado2')->name('listado2');
     Route::resource('users', 'UserController');
 });

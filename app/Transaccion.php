@@ -22,8 +22,8 @@ class Transaccion extends Model
         return $this->belongsTo(User::class, 'id_comprador');
     }
 
-    public function anuncio(){
-        return $this->belongsTo(Anuncio::class, 'id_anuncio');
-    }
+    // public function anuncio(){
+    //     return $this->belongsTo(Anuncio::class, 'id_anuncio');
+    // }
 
 }

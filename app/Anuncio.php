@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
-class Anuncio extends Model
+class Anuncio extends Model 
 {
     protected $fillable = [
         'producto', 'id_categoria', 'precio', 'nuevo', 'descripcion', 'id_vendedor', 'vendido'];

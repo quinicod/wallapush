@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Transaccion;
+use App\Anuncio;
 
 class UserController extends Controller
 {
@@ -94,10 +95,11 @@ class UserController extends Controller
 
         return redirect('/users?admin')->with('success', 'Usuario eliminado con éxito.');
     }
-    public function listadoxcat(Request $req){
-        $anuncios=anuncio::all();
-        $categorias=categoria::name();
-        $ventas=Transaccion::anuncio()->where('create_at'>=$req->fini)->where('create_at'<=$req->ffin)->where('id_categoria', $req->categoria)->get();
-        $dd($ventas);
+    public function listado2(Request $req){
+        $anuncios=Anuncio::where('created_at','>=',$req->fecha_ini)->where('created_at','<=',$req->fin)->where('id_categoria', $req->id_categoria)->with('concepto')->get();
+        foreach ($anuncios->concepto as $t){
+            
+        }
     }
+
 }

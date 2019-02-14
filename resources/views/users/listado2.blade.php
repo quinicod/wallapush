@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <form action="{{route('listadoxcat')}}" method="POST">
+    <form action="{{route('listado2')}}" method="POST">
         @csrf
         <div class="bx--form-item">
             <div class="bx--date-picker bx--date-picker--simple bx--date-picker--short">

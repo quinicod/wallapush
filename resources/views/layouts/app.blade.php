@@ -62,7 +62,7 @@
                                         <a class="dropdown-item" href="{{ route('users.index', 'admin') }}"> 
                                             <span class="glyphicon glyphicon-user"></span> Administrar usuarios
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('listadoxcat', 'admin') }}"> 
+                                        <a class="dropdown-item" href="{{ route('users.listado2', 'admin') }}"> 
                                                 <span class="glyphicon glyphicon-user"></span> listado por categorias
                                         </a>
                                     @endif
