@@ -96,7 +96,7 @@ class UserController extends Controller
         return redirect('/users?admin')->with('success', 'Usuario eliminado con éxito.');
     }
     public function listado2(Request $req){
-        $anuncios=Anuncio::where('created_at','>=',$req->fecha_ini)->where('created_at','<=',$req->fin)->where('id_categoria', $req->id_categoria)->with('concepto')->get();
+        $anuncios=Anuncio::whereBetween('created_at',[$req->fecha_ini, $req->fecha_fin])->where('id_categoria', $req->id_categoria)->with('concepto')->get();
         foreach ($anuncios->concepto as $t){
             
         }
