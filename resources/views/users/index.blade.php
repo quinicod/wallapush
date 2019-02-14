@@ -15,10 +15,22 @@
     @endif
   </div>
 
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7 offset-1">
+            <h4>Listado de usuarios</h4>
+        </div>
+        <div class="col md 4">
+          <a href="{{ route('users.index', 'admin') }}" class="btn btn-outline-secondary">Listado</a>
+          <a href="{{ route('listado1') }}" class="btn btn-outline-warning">Mejores Vendedores</a>
+          <a href="{{ route('listado3') }}" class="btn btn-outline-success">Mejor valorados</a>
+        </div>
+    </div>
+  </div> <br><br>
   <!-- Lista de usuarios -->
 
   <div class="container">
-    <table class="table table-striped"  id="myTable">
+    <table class="table table-striped"  id="myTable" data-order='[[ {{ $orden }}, "desc" ]]'>
       <thead>
           <tr>
             <td align="center"><strong>Nombre</strong></td>
@@ -28,7 +40,6 @@
             <td align="center"><strong>Saldo</strong></td>
             <td align="center"><strong>Estado de la cuenta</strong></td>
             <td align="center"><strong>Acciones de administración</strong></td>
-            <td></td>
           </tr>
       </thead>
       <tbody>
@@ -46,8 +57,8 @@
                   <p>Desactivada</p>
                 @endif
               </td>
-              <td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
-              <td align="center">    
+              <td><a href="{{ route('users.edit', $user->id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+ 
                                       <!-- Button trigger modal-->
                     @if($user->role=='user')
                       <button class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDelete{{$user->id}}"><span class="glyphicon glyphicon-trash"></span></button>
@@ -101,8 +112,7 @@
 <script>
   $(document).ready(function() {
     $('#myTable').DataTable({
-      'order': [[0,'desc']],
-      'stateSave' : true
+      
     });
   });
 </script>

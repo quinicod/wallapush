@@ -16,11 +16,27 @@ class UserController extends Controller
     public function index()
     {
         #   Mostrar usuarios por orden alfabético
-            $users = User::orderBy('name', 'ASC')->get();
+        $users = User::all();
+        $orden=0;
 
-            return view('users.index', compact('users'));
+        return view('users.index', compact('users','orden'));
     }
 
+    public function listado1()
+    {
+        $users = User::with('tieneAnuncio')->get();
+        $orden=2;
+
+        return view('users.mejoresVendedores', compact('users','orden'));
+    }
+
+    public function listado3()
+    {
+        $users = User::with('anuncios.transaccion')->get();
+        //dd($users);
+        $orden=0;
+        return view('users.valoracionesVendedores', compact('users','orden'));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -39,10 +39,10 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
-    public function verificado($user)
-    {
-        if($user->$email_verified_at != null){
-            $this->$actived==True;
-        }
-    }
+    // public function verificado($user)
+    // {
+    //     if($user->$email_verified_at != null){
+    //         $this->$actived==True;
+    //     }
+    // }
 }
