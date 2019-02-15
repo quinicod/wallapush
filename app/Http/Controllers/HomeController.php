@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         #   Mostrar anuncios con su imagen
-            $anuncios = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->paginate(20);
+            $anuncios = Anuncio::orderBy('created_at', 'ASC')->with('imagenes')->paginate(8);
 
             return view('comprador/index', compact('anuncios'));
     }
