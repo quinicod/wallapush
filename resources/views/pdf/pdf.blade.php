@@ -21,7 +21,6 @@
                         <td align="center"><strong>Precio</strong></td>
                         <td align="center"><strong>Categoria</strong></td>
                         <td align="center"><strong>Vendedor</strong></td>
-                        <td align="center"><strong>Vendido</strong></td>
                       </tr>
                   </thead>
                   <tbody>
@@ -31,8 +30,7 @@
                             <td>{{$a->producto}}</td>
                             <td>{{$a->precio}}</td>
                             <td>{{$a->nameCategoria->nombre}}</td>
-                            <td>{{$a->nameUser->nombre}}</td>
-                            <td>{{$a->vendido}}</td>
+                            <td>{{$a->nameUser->name}}</td>
                         </tr>
                         @endif
                       @endforeach

@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
-                <a class="navbar-brand logo blanco" href="#">WallaPush  <i class="fas fa-shopping-bag blanco"></i></a>
+                <a class="navbar-brand logo blanco" href="{{ route('home') }}">WallaPush  <i class="fas fa-shopping-bag blanco"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
