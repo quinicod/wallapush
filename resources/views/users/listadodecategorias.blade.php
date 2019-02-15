@@ -24,23 +24,29 @@
             <a href="{{ route('listado3') }}" class="btn btn-outline-success">Mejor valorados</a>
         </div>
     </div>
-</div> <br><br>
-<div class="form-group">
+ <br><br>
+<div class="row-justify-content">
     <form action="{{ route('filtrolista2') }}" method="POST"> 
         @csrf
-        <div class="row">
+        <div class="row-justify-content">
+          <div class="col-md-4 offset-md-4">
             <label>Fecha inicio</label>
-            <input type="date" placeholder="Fecha inicio" name="fecha_inicio">
+            <input class="form-control" type="date" placeholder="Fecha inicio" name="fecha_inicio">
             <label>Fecha fin</label>
-            <input type="date" placeholder="Fecha fin" name="fecha_fin">
-            <label for="exampleFormControlSelect1">Categorias</label>
-            <select class="form-control" id="exampleFormControlSelect1" name="id_categoria">
-            <option value="">Selecciona categoría</option>  
-            @foreach ($categorias as $cat)
-                <option value="{{$cat->id}}">{{$cat->nombre}}</option>  
-            @endforeach
-            </select>
-            <button type="submit">Enviar</button>
+            <input class="form-control" type="date" placeholder="Fecha fin" name="fecha_fin">
+            <div class="row-justify-content">
+              <br>
+              <div class="col-md-6 offset-md-2">
+                <select class="form-control" id="exampleFormControlSelect1" name="id_categoria">
+                <option value="">Selecciona categoría</option>  
+                @foreach ($categorias as $cat)
+                    <option value="{{$cat->id}}">{{$cat->nombre}}</option>  
+                @endforeach
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-danger" type="submit">Enviar</button>
+          </div>
         </div>
     </form>
 </div>
@@ -60,11 +66,11 @@
                       @foreach($anuncios as $a)
                         @if($a->transaccion !=null)  
                         <tr>
-                            <td><strong>{{$a->producto}}</strong></td>
-                            <td><strong>{{$a->precio}}</strong></td>
-                            <td><strong>{{$a->nameCategoria->nombre}}</strong></td>
-                            <td><strong>{{$a->nameUser->nombre}}</strong></td>
-                            <td><strong>{{$a->vendido}}</strong></td>
+                            <td>{{$a->producto}}</td>
+                            <td>{{$a->precio}}</td>
+                            <td>{{$a->nameCategoria->nombre}}</td>
+                            <td>{{$a->nameUser->nombre}}</td>
+                            <td>{{$a->vendido}}</td>
                         </tr>
                         @endif
                       @endforeach
@@ -72,6 +78,19 @@
                 </table>
         </div>
 </div>
+</div>
+</div>
+<form action="{{ route('pdf') }}" method="POST">
+  @csrf
+  @if(isset($fecha_inicio) && isset($fecha_fin) && isset($id_categoria))
+    <input type="hidden" name="fecha_inicio" value="{{ $fecha_inicio }}">
+    <input type="hidden" name="fecha_fin" value="{{ $fecha_fin }}">
+    <input type="hidden" name="id_categoria" value="{{ $id_categoria }}">
+  @endif
+  <div class="col-md-4 offset-md-5">
+    <button type="submit" class="btn btn-danger">Generar PDF</button>
+  </div>
+</form>
 @endsection
 @section('script')
 <script>

@@ -40,5 +40,6 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('users/listado-por-categorias', 'UserController@listadocat')->name('listado2');
     Route::get('users/listado-mejores-valorados', 'UserController@listado3')->name('listado3');
     Route::post('users/listado-por-categorias/filtro', 'UserController@listado2')->name('filtrolista2');
+    Route::post('pdfPetition','UserController@generatePDF')->name('pdf');
     Route::resource('users', 'UserController');
 });
