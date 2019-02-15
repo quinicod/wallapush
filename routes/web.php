@@ -24,6 +24,7 @@ Route::get('/filtro', 'HomeController@filtros')->name('filtro');
 Route::group(['middleware' => ['verified']], function () {
     //usuario-vendedor crud Anuncio
     Route::get('vendedor/Mis-Anuncios', 'AnuncioController@misAnuncios')->name('misAnuncios');
+    Route::post('vendedor/Mis-Anuncios/filtro', 'AnuncioController@filtroMisAnuncios')->name('filtroMisAnuncios');
     Route::get('comprador/Mis-Compras', 'AnuncioController@listacompras')->name('misCompras');
     Route::resource('vendedor', 'AnuncioController');
 

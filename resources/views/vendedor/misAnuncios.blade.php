@@ -5,6 +5,21 @@
     @if(session('message'))
         <div class="alert alert-{{ session('message')[0] }}"> {{ session('message')[1] }} </div> 
     @endif
+    <div class="row">
+        <div class="col-md-2 offset-md-9">
+        <form action="{{ route('filtroMisAnuncios') }}" method="POST" class="form-inline">
+                @csrf
+                <div class="form-group" style="margin-right: 3%;">
+                    <select class="form-control" id="exampleFormControlSelect1" name="eleccion">
+                      <option value="0">Activos</option>
+                      <option value="1">Vendidos</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary"><i class="fas fa-angle-right"></i></button>
+            </form>
+        </div>
+    </div> <br>
+    
             @forelse($anuncios as $index)
                 <div class="row justify-content-md-center">
                 @foreach($index as $a)
@@ -236,7 +251,7 @@
             @empty
                 <div class="text-center">
                     <br><br>
-                    <h4>No tienes anuncios publicados.</h4>
+                    <h4>No tienes anuncios vendidos.</h4>
                     <a href="{{ route('vendedor.create') }}">Publica uno Aqui!</a>
                 </div>
             @endforelse
