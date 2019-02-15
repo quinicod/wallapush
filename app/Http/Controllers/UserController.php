@@ -7,6 +7,8 @@ use App\User;
 use App\Transaccion;
 use App\Anuncio;
 use App\Categoria;
+use PDF;
+
 
 class UserController extends Controller
 {
@@ -121,7 +123,24 @@ class UserController extends Controller
     public function listado2(Request $req){
         $categorias=Categoria::all();
         $anuncios=Anuncio::where('created_at','>=',$req->fecha_inicio)->where('created_at','<=',$req->fecha_fin)->where('id_categoria', $req->id_categoria)->with('transaccion', 'nameCategoria', 'nameUser')->get();
-        return view('users.listadodecategorias', compact('categorias', 'anuncios'));
+        $fecha_inicio=$req->fecha_inicio;
+        $fecha_fin=$req->fecha_fin;
+        $id_categoria=$req->id_categoria;
+        return view('users.listadodecategorias', compact('categorias', 'anuncios', 'fecha_inicio', 'fecha_fin', 'id_categoria'));
     }
 
+    public function generatePDF(Request $req)
+    {
+        if(isset($req->fecha_inicio) && isset($req->fecha_fin) && isset($req->id_categoria)){
+        $categorias=Categoria::all();
+        $anuncios=Anuncio::where('created_at','>=',$req->fecha_inicio)->where('created_at','<=',$req->fecha_fin)->where('id_categoria', $req->id_categoria)->with('transaccion', 'nameCategoria', 'nameUser')->get();
+        $nombre='Listado de ventas entre '. $req->fecha_inicio .' y '. $req->fecha_fin .'.pdf';
+        $pdf = PDF::loadView('pdf.pdf', compact('categorias', 'anuncios'));
+
+        $pdf->save(storage_path().'_filename.pdf');
+
+        return $pdf->download($nombre);
+        }
+
+    }
 }
