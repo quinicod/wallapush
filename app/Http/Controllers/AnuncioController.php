@@ -31,7 +31,6 @@ class AnuncioController extends Controller
     public function filtros(Request $request)
     {
         #   Filtrar búsquedas
-        // $anuncios = Anuncio::where('producto','LIKE', "%$producto%")->orWhere('descripcion','LIKE', "%$producto%")->orderBy('id', 'DESC')->paginate(8);
             $producto  = $request->get('producto');
             $opcion_categoria   = $request->get('id_categoria');
 

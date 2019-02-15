@@ -88,12 +88,11 @@
                     </div>
             </form>
             @elseif(Auth::user()->saldo < $anuncio->precio)
-                <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >No tiene suficiente saldo</a><br>
-                <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger">Saldo: {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ < Precio {{ __(":precio", ['precio' => $anuncio->precio]) }}€</a>
+                <button class="btn btn-info btn-danger">No tiene suficiente saldo - Saldo: {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ < Precio {{ __(":precio", ['precio' => $anuncio->precio]) }}€</a>
             @endif
         </div><br>
         <div class="row col-md-1 justify-content-md-center">
-            <a href="{{ route('comprador.index') }}" class="btn btn-info" >Ir al listado de anuncios</a>
+            <a href="{{ route('home') }}" class="btn btn-info" >Ir al listado de anuncios</a>
         </div><br>
     </div>
 </div>

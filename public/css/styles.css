@@ -68,7 +68,8 @@ div.caca {
   color: red;
 }
 .card-header{
-  background-color: red;
+  background-color: #78C2AD;
+  color: white;
 }
 .form-check-label:hover{
   color:red;
