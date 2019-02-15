@@ -15,15 +15,6 @@
                     @else
                     <a href="">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                @foreach($c['anuncio']['imagenes'] as $index => $i)
-                                    @if($index == 0)
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    @else
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"></li>
-                                    @endif
-                                @endforeach
-                            </ol>
                             <div class="carousel-inner">
                             @foreach($c['anuncio']['imagenes'] as $index => $i)
                                 @if($index == 0)
@@ -40,15 +31,16 @@
                         </div>
                     </a>
                     @endif
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5><strong>{{ $c['valoracion'] }}</strong></h5>
-                            <div class="float-md-right">
-                                <p class="vendido">Comprado</p>
-                            </div>
-                        </div>  
-                    </div>
+                <div class="col-md-12">
+                    <br>
+                    <h5><strong>{{ $c['anuncio']['producto']}}</strong></h5>
+                    <br>
+                    <h5>{{ $c['anuncio']['descripcion']}}</h5>
+                    <br>
+                    <h5><strong>{{ $c['valoracion'] }}<span class="glyphicon glyphicon-star"></span></strong></h5>
+                        <div class="float-md-right">
+                            <p class="vendido">Comprado</p>
+                        </div>
                 </div>
             </div>
         </div>
