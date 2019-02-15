@@ -122,7 +122,7 @@ class UserController extends Controller
     }
     public function listado2(Request $req){
         $categorias=Categoria::all();
-        $anuncios=Anuncio::where('created_at','>=',$req->fecha_inicio)->where('created_at','<=',$req->fecha_fin)->where('id_categoria', $req->id_categoria)->with('transaccion', 'nameCategoria', 'nameUser')->get();
+        $anuncios=Anuncio::where('created_at','>=',$req->fecha_inicio)->where('created_at','<=',$req->fecha_fin." 23:59:59")->where('id_categoria', $req->id_categoria)->with('transaccion', 'nameCategoria', 'nameUser')->get();
         $fecha_inicio=$req->fecha_inicio;
         $fecha_fin=$req->fecha_fin;
         $id_categoria=$req->id_categoria;

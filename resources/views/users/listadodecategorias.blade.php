@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 offset-1">
-            <h4>Mejores vendedores</h4>
+            <h4>Ventas por Categorias</h4>
         </div>
         <div class="col md 4">
             <a href="{{ route('users.index', 'admin') }}" class="btn btn-outline-secondary">Listado</a>

@@ -6,20 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <style>
-        h1{
-            font-size:30px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
-    <h1>Listado de ventas</h1>
+    <h1 class="text-center">Listado de ventas</h1>
 
     <div class="row">
         <div class="container">
-                <table class="table table-striped"  id="myTable" data-order='[[0, "desc" ]]'>
+                <table class="table table-striped" >
                   <thead>
                       <tr>
                         <td align="center"><strong>Producto</strong></td>
@@ -45,12 +40,3 @@
                 </table>
         </div>
 </div>
-@section('script')
-<script>
-  $(document).ready(function() {
-    $('#myTable').DataTable({
-      
-    });
-  });
-</script>
-@endsection
