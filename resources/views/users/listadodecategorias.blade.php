@@ -31,9 +31,9 @@
         <div class="row-justify-content">
           <div class="col-md-4 offset-md-4">
             <label>Fecha inicio</label>
-            <input class="form-control" type="date" placeholder="Fecha inicio" name="fecha_inicio">
+            <input required class="form-control" type="date" placeholder="Fecha inicio" name="fecha_inicio">
             <label>Fecha fin</label>
-            <input class="form-control" type="date" placeholder="Fecha fin" name="fecha_fin">
+            <input required class="form-control" type="date" placeholder="Fecha fin" name="fecha_fin">
             <div class="row-justify-content">
               <br>
               <div class="row">
