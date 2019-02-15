@@ -68,5 +68,5 @@
                 </div>
         </form>
 </div><br>
-    <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >No, gracias</a>
+    <a href="{{ route('home') }}" class="btn btn-info btn-danger" >No, gracias</a>
 @endsection
