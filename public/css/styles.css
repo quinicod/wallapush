@@ -1,3 +1,33 @@
+nav{
+  background-color: #073f2c;
+}
+nav ul li a{
+  color: white !important;
+}
+.pagination,
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: green !important;
+    border-color: green!important;
+}
+.blanco{
+  color: white;
+}
+.logo{
+  padding-right: 5%;
+  color: white !important;
+}
+.dropdown-menu{
+  background-color: #073f2c;
+}
+.dropdown-item:hover{
+  background-color: #91e0a7
+  ;
+}
 .carousel-inner > .carousel-item > img {
     object-fit: scale-down;
     height: 25vh;

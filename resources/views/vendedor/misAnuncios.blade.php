@@ -15,15 +15,6 @@
                         @else
                         <a href="">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    @foreach($a['imagenes'] as $index => $i)
-                                        @if($index == 0)
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        @else
-                                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"></li>
-                                        @endif
-                                    @endforeach
-                                </ol>
                                 <div class="carousel-inner">
                                 @foreach($a['imagenes'] as $index => $i)
                                     @if($index == 0)
@@ -40,9 +31,17 @@
                             </a>
                         @endif
                             <div class="card-body">
-                                <h5><strong>{{ substr($a['producto'],0,20) }}... {{ $a['precio'] }}€</strong></h5>
+                                @if(strlen($a['producto']) > 20)
+                                    <h5><strong>{{ substr($a['producto'],0,20) }}... {{ $a['precio'] }}€</strong></h5>
+                                @else 
+                                    <h5><strong>{{ $a['producto'] }} {{ $a['precio'] }}€</strong></h5>
+                                @endif
                                 <div id="el_div{{ $a['id']}}">
-                                        <p class="card-text">{{substr($a['descripcion'],0,150)}}...</p>
+                                    @if(strlen($a['descripcion']) > 100)
+                                        <p class="card-text">{{substr($a['descripcion'],0,100)}}...</p>
+                                    @else 
+                                        <p class="card-text">{{$a['descripcion']}}</p>
+                                    @endif
                                 </div> <br>
                                 @if($a['vendido'] == false)
                                 <a href="" data-toggle="modal" data-target="#editModal{{ $a['id'] }}">Editar</a> 
