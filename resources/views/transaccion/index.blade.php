@@ -48,7 +48,7 @@
         <!-- Opciones -->
         <div class="row col-md-1 justify-content-md-center">
             @if($usuario == $vendedor)
-                <a href="{{ route('comprador.index') }}" class="btn btn-info btn-danger" >Eres el propietario de este anuncio</a><br>
+                <a href="{{ route('home') }}" class="btn btn-info btn-danger" >Eres el propietario de este anuncio</a><br>
             @elseif(Auth::user()->saldo >= $anuncio->precio && !($usuario == $vendedor))
             <form action="{{route('transaccion.update', $anuncio->id)}}" method="POST">
                 {{csrf_field()}}
