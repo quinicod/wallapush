@@ -103,15 +103,14 @@
 <br>
 
 <!-- Paginación -->
+
 <div class="container">
     <div class="row">
         <div class="offset-md-5">
-            {{ $anuncios->links() }}
+            {!! $anuncios->appends(request()->input())->links() !!}
         </div>
       </div>
 </div>
-
-
 
 <!-- Fin - Paginación -->
 
