@@ -40,7 +40,7 @@ class AnuncioController extends Controller
                 ->Categoria($opcion_categoria)
                 ->paginate(8);
 
-            return view('comprador/index', compact('anuncios'));
+            return view('comprador.index', compact('anuncios'));
     }
     public function listacompras(Request $request)
     {
@@ -197,7 +197,20 @@ class AnuncioController extends Controller
     public function misAnuncios()
     {
         $usuario = Auth::id();
-        $anuncios = Anuncio::orderBy('created_at', 'asc')->where('id_vendedor',$usuario)->with('imagenes')->get()->toArray();
+        $anuncios = Anuncio::orderBy('created_at', 'asc')->where('id_vendedor',$usuario)->where('vendido','false')->with('imagenes')->get()->toArray();
+        $anuncios=Array_chunk($anuncios,3,true);
+        $categorias=Categoria::all();
+        $imgBorrado = array();
+        $imgB=null;
+        //dd($imgBorrado);
+        $anuncio=Anuncio::find('id');
+        return view('vendedor/misAnuncios', compact('anuncio','anuncios','categorias','imgBorrado','imgB'));
+    }
+
+    public function filtroMisAnuncios(Request $req)
+    {
+        $usuario = Auth::id();
+        $anuncios = Anuncio::orderBy('created_at', 'asc')->where('id_vendedor',$usuario)->where('vendido',$req->eleccion)->with('imagenes')->get()->toArray();
         $anuncios=Array_chunk($anuncios,3,true);
         $categorias=Categoria::all();
         $imgBorrado = array();

@@ -13,7 +13,7 @@
             </div>
         </div><br>
         <!-- Imagen -->
-        <div class="row justify-content-md-center">
+        <div class="">
             <div class="col-md-3">
                 @if($anuncio->imagenes == '[]')
                     <div class="alert alert-danger"> Este anuncio no tiene imágenes. </div>
@@ -36,17 +36,17 @@
             </div>
         </div><br>
         <!-- Descripción y precio -->
-        <div class="row justify-content-md-center">
+        <div class="">
             <h3>Precio: {{ __(":precio", ['precio' => $anuncio->precio]) }}€</h3>
         </div>
-        <div class="row justify-content-md-center">
+        <div class="">
             <h4>Descripción del producto</h4>
         </div>
-        <div class="card col-md-3" align="center">
+        <div class="col-md-4 offset-md-4" align="center">
             <p>{{ __(":descripcion", ['descripcion' => $anuncio->descripcion]) }}</p>
         </div><br>
         <!-- Opciones -->
-        <div class="row col-md-1 justify-content-md-center">
+        <div class="col-md-4 offset-md-4">
             @if($usuario == $vendedor)
                 <a href="{{ route('home') }}" class="btn btn-info btn-danger" >Eres el propietario de este anuncio</a><br>
             @elseif(Auth::user()->saldo >= $anuncio->precio && !($usuario == $vendedor))
@@ -88,10 +88,10 @@
                     </div>
             </form>
             @elseif(Auth::user()->saldo < $anuncio->precio)
-                <button class="btn btn-info btn-danger">No tiene suficiente saldo - Saldo: {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ < Precio {{ __(":precio", ['precio' => $anuncio->precio]) }}€</a>
+                <button class="btn btn-info btn-danger">No tiene suficiente saldo - Saldo: {{ __(":saldo", ['saldo' => $comprador->saldo]) }}€ < Precio {{ __(":precio", ['precio' => $anuncio->precio]) }}€</button>
             @endif
-        </div><br>
-        <div class="row col-md-1 justify-content-md-center">
+        </div><br> <br>
+        <div class=" col-md-4 offset-md-4">
             <a href="{{ route('home') }}" class="btn btn-info" >Ir al listado de anuncios</a>
         </div><br>
     </div>
