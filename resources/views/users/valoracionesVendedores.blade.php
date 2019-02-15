@@ -36,6 +36,7 @@
           <tr>
             <td align="center"><strong>Nombre</strong></td>
             <td align="center"><strong>Media Valoraciones</strong></td>
+            <td hidden>orden</td>
           </tr>
       </thead>
       <tbody>
@@ -44,6 +45,7 @@
               <td align="center"><strong>{{$user->name}}</strong></td>
               @if($user->anuncios=='[]')
                 <td align="center">No tiene valoraciones</td>
+                <td hidden>0</td>
               @else
                 @php
                     $valoraciones=0;
@@ -66,8 +68,10 @@
                 @endphp
                 @if($valoraciones != 0)
                     <td align="center">{{ $valoraciones }}</td>
+                    <td hidden>{{ $valoraciones }}</td>
                 @else
                     <td align="center">No tiene valoraciones</td>
+                    <td hidden>0</td>
                 @endif
               @endif
           </tr>

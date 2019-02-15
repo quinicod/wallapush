@@ -68,10 +68,18 @@
               </div>
             </div> 
           <div class="card-body">
-            <h5><strong>{{ substr($a->producto,0,20) }}... {{ $a->precio }}€</strong></h5>
+            @if(strlen($a->producto) > 20)
+              <h5><strong>{{ substr($a->producto,0,20) }}... {{ $a->precio }}€</strong></h5>
+            @else
+              <h5><strong>{{ $a->producto}} {{ $a->precio }}€</strong></h5>
+            @endif
               <div id="el_div{{ $a->id}}">
                 {{-- @if(strlen($a->descripcion) <) --}}
-                <p class="card-text">{{substr($a->descripcion,0,150)}}...</p>
+                @if(strlen($a->descripcion) > 100)
+                  <p class="card-text">{{substr($a->descripcion,0,100)}}...</p>
+                @else
+                  <p class="card-text">{{ $a->descripcion}}</p>
+                @endif
               </div> <br>
               @if($a->vendido == false)
                 <a class="btn btn-success btn-block" href="{{route('vendedor.show', ['id' => $a->id])}}">
@@ -95,8 +103,15 @@
 <br>
 
 <!-- Paginación -->
+<div class="container">
+    <div class="row">
+        <div class="offset-md-5">
+            {{ $anuncios->links() }}
+        </div>
+      </div>
+</div>
 
-{{ $anuncios->links() }}
+
 
 <!-- Fin - Paginación -->
 

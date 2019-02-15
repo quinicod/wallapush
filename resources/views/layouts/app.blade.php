@@ -25,6 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container-fluid">
+                <a class="navbar-brand logo blanco" href="#">WallaPush  <i class="fas fa-shopping-bag blanco"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -63,9 +64,11 @@
                                             <span class="glyphicon glyphicon-user"></span> Administrar usuarios
                                         </a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir Anuncio</a>
-                                    <a class="dropdown-item" href="{{ route('misAnuncios') }}"> Mis Anuncios</a>
-                                    <a class="dropdown-item" href="{{ route('misCompras') }}"> Mis Compras</a>
+                                    @if(Auth::user()->role == 'user')
+                                        <a class="dropdown-item" href="{{ route('vendedor.create') }}"> Añadir Anuncio</a>
+                                        <a class="dropdown-item" href="{{ route('misAnuncios') }}"> Mis Anuncios</a>
+                                        <a class="dropdown-item" href="{{ route('misCompras') }}"> Mis Compras</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
