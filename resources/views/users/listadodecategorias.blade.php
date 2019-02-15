@@ -36,20 +36,26 @@
             <input required class="form-control" type="date" placeholder="Fecha fin" name="fecha_fin">
             <div class="row-justify-content">
               <br>
-              <div class="col-md-6 offset-md-2">
-                <select required class="form-control" id="exampleFormControlSelect1" name="id_categoria">
-                <option  value="">Selecciona categoría</option>  
-                @foreach ($categorias as $cat)
-                    <option value="{{$cat->id}}">{{$cat->nombre}}</option>  
-                @endforeach
-                </select>
+              <div class="row">
+                <div class="col-md-8">
+                  <select class="form-control" id="exampleFormControlSelect1" name="id_categoria">
+                  <option value="">Selecciona categoría</option>  
+                  @foreach ($categorias as $cat)
+                      <option value="{{$cat->id}}">{{$cat->nombre}}</option>  
+                  @endforeach
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-outline-secondary" type="submit">Enviar</button>
+                </div>
               </div>
-            </div>
-            <button class="btn btn-danger" type="submit">Enviar</button>
+              
+              </div>
+
           </div>
         </div>
     </form>
-</div>
+</div> <br><br>
 <div class="row">
         <div class="container">
                 <table class="table table-striped"  id="myTable" data-order='[[0, "desc" ]]'>
@@ -59,7 +65,6 @@
                         <td align="center"><strong>Precio</strong></td>
                         <td align="center"><strong>Categoria</strong></td>
                         <td align="center"><strong>Vendedor</strong></td>
-                        <td align="center"><strong>Vendido</strong></td>
                       </tr>
                   </thead>
                   <tbody>
@@ -70,7 +75,6 @@
                             <td>{{$a->precio}}</td>
                             <td>{{$a->nameCategoria->nombre}}</td>
                             <td>{{$a->nameUser->name}}</td>
-                            <td>{{$a->vendido}}</td>
                         </tr>
                         @endif
                       @endforeach
@@ -88,7 +92,7 @@
     <input type="hidden" name="id_categoria" value="{{ $id_categoria }}">
   @endif
   <div class="col-md-4 offset-md-5">
-    <button type="submit" class="btn btn-danger">Generar PDF</button>
+    <button type="submit" class="btn btn-outline-danger">Generar PDF</button>
   </div>
 </form>
 @endsection
