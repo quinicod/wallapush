@@ -31,14 +31,14 @@
         <div class="row-justify-content">
           <div class="col-md-4 offset-md-4">
             <label>Fecha inicio</label>
-            <input class="form-control" type="date" placeholder="Fecha inicio" name="fecha_inicio">
+            <input required class="form-control" type="date" placeholder="Fecha inicio" name="fecha_inicio">
             <label>Fecha fin</label>
-            <input class="form-control" type="date" placeholder="Fecha fin" name="fecha_fin">
+            <input required class="form-control" type="date" placeholder="Fecha fin" name="fecha_fin">
             <div class="row-justify-content">
               <br>
               <div class="col-md-6 offset-md-2">
-                <select class="form-control" id="exampleFormControlSelect1" name="id_categoria">
-                <option value="">Selecciona categoría</option>  
+                <select required class="form-control" id="exampleFormControlSelect1" name="id_categoria">
+                <option  value="">Selecciona categoría</option>  
                 @foreach ($categorias as $cat)
                     <option value="{{$cat->id}}">{{$cat->nombre}}</option>  
                 @endforeach
